@@ -1,2 +1,0 @@
-com.windydrive.leaderboard
-string game_services_project_id

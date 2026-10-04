@@ -41,3 +41,7 @@ android/keystore.properties
 *.jks
 *.keystore
 /build/
+
+# plugin build outputs
+plugins/**/android/build/
+plugins/**/android/.gradle/
