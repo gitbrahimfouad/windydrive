@@ -59,6 +59,9 @@ Règles :
 - Sons : synthétisés via WebAudio (tap, crash, nouveau record), sans fichiers audio. Interrupteur son sur l'accueil.
 - Identifiant d'app provisoire : `com.windydrive.app` (à confirmer avant publication).
 
+- **iPhone uniquement** (`TARGETED_DEVICE_FAMILY = 1`) : le jeu est portrait/téléphone. Une app iPad devrait supporter les 4 orientations (règle Apple) ; ne pas repasser en « universel » sans adapter la mise en page.
+- **Xcode Cloud** : `ios/App/ci_scripts/ci_post_clone.sh` installe Node, `npm ci`, build web et `cap sync ios` (node_modules et ios/App/App/public ne sont pas dans Git).
+
 ## Qualité
 
 - 60 fps stables sur téléphone d'entrée de gamme : dessiner seulement la fenêtre visible, éviter les allocations par image, mesurer avant d'optimiser.
