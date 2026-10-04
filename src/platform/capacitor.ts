@@ -1,5 +1,5 @@
 import { App } from '@capacitor/app';
-import { Capacitor, SystemBars } from '@capacitor/core';
+import { Capacitor, SystemBars, registerPlugin } from '@capacitor/core';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Haptics, ImpactStyle, NotificationType } from '@capacitor/haptics';
 import { KeepAwake } from '@capacitor-community/keep-awake';
@@ -8,7 +8,17 @@ import { ScreenOrientation } from '@capacitor/screen-orientation';
 import { Share } from '@capacitor/share';
 import { StatusBar } from '@capacitor/status-bar';
 import type { WindDir } from '../config/gameConfig';
+import { leaderboardIdFor, leaderboardsConfigured } from '../config/leaderboards';
 import type { Platform } from './platform';
+
+/** Native Game Center / Play Games bridge: plugins/windy-leaderboard. */
+interface LeaderboardPlugin {
+  initialize(): Promise<void>;
+  submitScore(opts: { leaderboardId: string; score: number }): Promise<{ submitted: boolean }>;
+  show(): Promise<{ shown: boolean }>;
+}
+const Leaderboard = registerPlugin<LeaderboardPlugin>('Leaderboard');
+const store = Capacitor.getPlatform(); // 'ios' | 'android'
 
 const bestKey = (d: WindDir) => `windy.best.${d === 1 ? 'right' : 'left'}`;
 const settingKey = (k: string) => `windy.setting.${k}`;
@@ -66,6 +76,25 @@ export const capacitorPlatform: Platform = {
       /* user cancelled or share unavailable */
     }
   },
+  leaderboard: {
+    available: () => leaderboardsConfigured(store),
+    async submit(dir, meters) {
+      const leaderboardId = leaderboardIdFor(store, dir);
+      if (!leaderboardId || meters <= 0) return;
+      try {
+        await Leaderboard.submitScore({ leaderboardId, score: Math.round(meters) });
+      } catch {
+        /* offline or not signed in: the local record is kept anyway */
+      }
+    },
+    async show() {
+      try {
+        return (await Leaderboard.show()).shown;
+      } catch {
+        return false;
+      }
+    },
+  },
   async keepAwake(on) {
     try {
       if (on) await KeepAwake.keepAwake();
@@ -75,6 +104,7 @@ export const capacitorPlatform: Platform = {
     }
   },
   async init() {
+    if (leaderboardsConfigured(store)) void Leaderboard.initialize().catch(() => {});
     // Immersive portrait game: hide the status bar, lock the orientation.
     if (Capacitor.getPlatform() === 'android') {
       // Edge-to-edge immersive: hide status + navigation bars (swipe from the edge shows them briefly).

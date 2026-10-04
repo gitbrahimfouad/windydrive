@@ -34,6 +34,7 @@
     "@capacitor/preferences": "^8.0.1",
     "@capacitor/screen-orientation": "^8.0.2",
     "@capacitor/share": "^8.0.3",
-    "@capacitor/status-bar": "^8.0.4"
+    "@capacitor/status-bar": "^8.0.4",
+    "windy-leaderboard": "file:plugins/windy-leaderboard"
   }
 }

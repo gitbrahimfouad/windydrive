@@ -23,7 +23,8 @@ src/sim/                   simulation pure TS : rng, roadGenerator, road, car, g
 src/render/                dessin Canvas, caméra. Lit l'état de sim en lecture seule
 src/ui/                    écrans (accueil, HUD, fin de partie), entrées tap/clavier, i18n
 src/platform/              interface + implémentations (capacitor.ts natif, web.ts navigateur)
-src/ext/                   points d'extension VIDES : leaderboard, ads, analytics (ne pas implémenter)
+src/ext/                   points d'extension VIDES : ads, analytics (ne pas implémenter)
+plugins/windy-leaderboard/ plugin Capacitor local : Game Center (Swift) + Play Games v2 (Java). IDs dans src/config/leaderboards.ts
 src/dev/                   panneau de réglages, chargé seulement si import.meta.env.DEV
 tests/                     Vitest (sim sans navigateur)
 ```
@@ -51,7 +52,7 @@ Règles :
 - Direction « Plein Été » : jour (summer) + nuit (summer-night). Le mode sombre est un **réglage utilisateur** (pas automatique).
 - Polices : Bowlby One (titres, score), DM Sans (interface). Logo « WINDY DRIVE » incliné de −9°, aigrettes de vent à gauche des mots.
 - La voiture est dessinée à l'échelle de la hitbox 18×30 (le design la dessine plus grande : réduire le sprite, ne pas changer la physique).
-- Le bouton Classement n'affiche qu'un message pour l'instant (extension `ext/leaderboard.ts`).
+- Classements : Game Center (iOS) / Play Games (Android), un par sens du vent. Le bouton n'apparaît que si les IDs sont renseignés (`src/config/leaderboards.ts`) ; Android reste désactivé tant que les IDs Play Games et `game_services_project_id` (android/app/src/main/res/values/strings.xml) ne sont pas remplis.
 
 ## Produit
 

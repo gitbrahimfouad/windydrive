@@ -4,4 +4,6 @@
     <string name="title_activity_main">Windy Drive</string>
     <string name="package_name">com.windydrive.app</string>
     <string name="custom_url_scheme">com.windydrive.app</string>
+    <!-- Google Play Games project ID (Play Console → Play Games Services → Configuration). Replace before enabling leaderboards. -->
+    <string name="game_services_project_id" translatable="false">000000000000</string>
 </resources>

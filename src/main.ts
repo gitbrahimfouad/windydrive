@@ -43,7 +43,7 @@ async function main(): Promise<void> {
   resize();
 
   const bestNow = () => best[String(game.windDir)];
-  const home = () => screens.showHome({ best: bestNow(), windDir: game.windDir, soundOn, night: themeName === 'night' });
+  const home = () => screens.showHome({ best: bestNow(), windDir: game.windDir, soundOn, night: themeName === 'night', leaderboard: platform.leaderboard.available() });
   const toHome = () => {
     game.reset();
     camera.reset();
@@ -83,7 +83,11 @@ async function main(): Promise<void> {
       void s.setSetting('lang', getLang());
       home();
     },
-    onLeaderboard: () => screens.flash(t('leaderboardSoon')),
+    onLeaderboard: () => {
+      void platform.leaderboard.show().then((shown) => {
+        if (!shown) screens.flash(t(Capacitor.getPlatform() === 'android' ? 'leaderboardSignInAndroid' : 'leaderboardSignIn'));
+      });
+    },
     onShare: () => {
       const score = game.score;
       void renderShareCard(game, camera, trail, themes[themeName], {
@@ -125,6 +129,7 @@ async function main(): Promise<void> {
       }
       if (record) sound.record();
       void platform.keepAwake(false);
+      void platform.leaderboard.submit(game.windDir, e.score);
       screens.showOver({ score: e.score, best: bestNow(), prevBest: prev, record });
     }
   });
@@ -145,7 +150,7 @@ async function main(): Promise<void> {
       applyShot(shot, {
         game, camera, trail, effects, screens, renderer,
         setTheme: (n) => { themeName = n; applyTheme(); },
-        showHome: (best) => { screens.showHome({ best, windDir: game.windDir, soundOn, night: themeName === 'night' }); },
+        showHome: (best) => { screens.showHome({ best, windDir: game.windDir, soundOn, night: themeName === 'night', leaderboard: true }); }, // store screenshots show the button
         w: () => renderer.w, h: () => renderer.h,
       });
       resize(); // pick up the 3x pixel ratio

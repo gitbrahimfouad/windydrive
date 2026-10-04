@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default (placeholder). The real value is set in the app module: android/app/src/main/res/values/strings.xml -->
+    <string name="game_services_project_id" translatable="false">0</string>
+</resources>

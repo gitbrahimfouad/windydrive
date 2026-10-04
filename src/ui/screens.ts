@@ -18,6 +18,8 @@ export interface HomeData {
   windDir: WindDir;
   soundOn: boolean;
   night: boolean;
+  /** Show the Leaderboard button (native app with leaderboards configured). */
+  leaderboard: boolean;
 }
 export interface OverData {
   score: number;
@@ -45,7 +47,7 @@ export class Screens {
     this.scoreEl.style.cssText = `font-family:${fonts.display};font-size:56px;line-height:1;`;
     this.hud.appendChild(this.scoreEl);
     this.screen.style.cssText = 'position:absolute;inset:0;';
-    this.toast.style.cssText = `position:absolute;left:50%;bottom:calc(var(--sab) + 150px);transform:translateX(-50%);padding:12px 18px;border-radius:999px;font:700 14px ${fonts.ui};white-space:nowrap;opacity:0;transition:opacity .2s;`;
+    this.toast.style.cssText = `position:absolute;left:50%;bottom:calc(var(--sab) + 150px);transform:translateX(-50%);padding:12px 18px;border-radius:22px;font:700 14px ${fonts.ui};text-align:center;width:max-content;max-width:calc(100vw - 48px);opacity:0;transition:opacity .2s;`;
     root.append(this.hud, this.screen, this.toast);
     this.applyTheme(theme);
   }
@@ -135,7 +137,8 @@ export class Screens {
 
     const top = document.createElement('div');
     top.style.cssText = 'width:100%;display:flex;justify-content:space-between;gap:8px;';
-    top.append(this.pill(d.soundOn ? t('soundOn') : t('soundOff'), this.cb.onToggleSound), this.pill(t('leaderboard'), this.cb.onLeaderboard));
+    top.append(this.pill(d.soundOn ? t('soundOn') : t('soundOff'), this.cb.onToggleSound));
+    if (d.leaderboard) top.append(this.pill(t('leaderboard'), this.cb.onLeaderboard));
 
     const rec = document.createElement('div');
     rec.style.cssText = `margin-top:30px;display:flex;align-items:center;gap:10px;background:${th.uiPanel};color:${th.uiInk};padding:9px 18px;border-radius:999px;box-shadow:0 4px 0 rgba(36,64,26,.5);`;

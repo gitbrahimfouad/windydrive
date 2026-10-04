@@ -1,0 +1,13 @@
+{
+  "name": "windy-leaderboard",
+  "version": "1.0.0",
+  "description": "Game Center (iOS) and Google Play Games (Android) leaderboards for Windy Drive",
+  "private": true,
+  "license": "UNLICENSED",
+  "files": ["android/src/main/", "android/build.gradle", "ios/Sources", "Package.swift"],
+  "capacitor": {
+    "ios": { "src": "ios" },
+    "android": { "src": "android" }
+  },
+  "peerDependencies": { "@capacitor/core": ">=8.0.0" }
+}

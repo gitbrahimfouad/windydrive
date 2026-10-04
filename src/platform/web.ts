@@ -59,6 +59,13 @@ export const webPlatform: Platform = {
       /* user cancelled */
     }
   },
+  leaderboard: {
+    available: () => false,
+    async submit() {},
+    async show() {
+      return false;
+    },
+  },
   async keepAwake() {},
   async init() {},
 };
