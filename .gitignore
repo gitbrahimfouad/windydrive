@@ -35,3 +35,9 @@ store/_tmp/
 
 # local tooling
 .claude/settings.local.json
+
+# signing secrets: NEVER commit
+android/keystore.properties
+*.jks
+*.keystore
+/build/
