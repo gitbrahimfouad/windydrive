@@ -1,0 +1,13 @@
+/* Fonts shipped with the app (offline). Latin subset; Bowlby One 400, DM Sans variable 400–700. */
+@font-face {
+  font-family: 'Bowlby One';
+  font-weight: 400;
+  font-display: block;
+  src: url('../assets/fonts/BowlbyOne-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-weight: 400 700;
+  font-display: block;
+  src: url('../assets/fonts/DMSans-latin.woff2') format('woff2');
+}

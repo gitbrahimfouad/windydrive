@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=DM+Sans:wght@400;500;700&family=Unbounded:wght@500;800&family=JetBrains+Mono:wght@400;600&family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet"><style>body{margin:0;background:#ebe8e1;font-family:system-ui,sans-serif;color:#1a1a1a}a{color:#1a1a1a}a:hover{color:#2563eb}.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 8px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-direction:column;gap:40px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)}.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:28px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}@keyframes wdPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.07);opacity:.75}}</style></helmet>
+<section class="dv-turn" id="t3">
+<div class="dv-thd"><a class="dv-tid" href="#t3">3</a><span class="dv-tname" style="white-space:nowrap">Logo aux formats d'icône iOS et Android</span></div>
+<p style="margin:0 0 28px;max-width:760px;font:13px/1.55 system-ui,sans-serif;color:rgba(0,0,0,.62);text-wrap:pretty">Même logo, le vent souffle désormais sur les deux mots. Version nuit du logo (2a, 3e déclinaison) : fond vert nuit, ombre cobalt. Les petites tailles sont affichées à 1:1 pour juger la lisibilité réelle.</p>
+<div class="dv-opts">
+
+<div class="dv-opt" id="3a">
+<div class="dv-olabel"><a class="dv-oid" href="#3a">3a</a>iOS — master 1024 × 1024, masque arrondi appliqué par le système</div>
+<div class="dv-card" style="display:flex;gap:40px;padding:36px 40px;align-items:flex-end;flex-wrap:wrap">
+<div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+<div style="width:240px;height:240px;border-radius:53.7px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.18)">
+<div style="width:240px;height:240px;background:#1d3a33;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
+
+<div style="display:flex;flex-direction:column;transform:scale(1.14) skewX(-9deg);font-family:'Bowlby One';line-height:.86;text-shadow:0 4px 0 #2563eb">
+<div style="display:flex;align-items:center;gap:6px"><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><div style="width:20px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div><div style="width:12px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div><div style="width:17px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div></div><span style="font-size:42px;color:#fff">WINDY</span></div>
+<div style="display:flex;align-items:center;gap:6px;margin-left:10px"><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><div style="width:12px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div><div style="width:17px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div><div style="width:20px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div></div><span style="font-size:42px;color:#ffc21a">DRIVE</span></div>
+</div>
+</div>
+</div>
+<span style="font:600 11px 'JetBrains Mono',monospace;color:#666">1024 · App Store (affiché à 240)</span>
+</div>
+<sc-for list="{{ iosSizes }}" as="s" hint-placeholder-count="5">
+<div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+<div style="width:{{ s.px }}px;height:{{ s.px }}px;border-radius:{{ s.r }}px;overflow:hidden;position:relative;box-shadow:0 4px 10px rgba(0,0,0,.15)">
+<div style="position:absolute;top:0;left:0;width:240px;height:240px;transform:scale({{ s.k }});transform-origin:0 0">
+<div style="width:240px;height:240px;background:#1d3a33;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
+
+<div style="display:flex;flex-direction:column;transform:scale(1.14) skewX(-9deg);font-family:'Bowlby One';line-height:.86;text-shadow:0 4px 0 #2563eb">
+<div style="display:flex;align-items:center;gap:6px"><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><div style="width:20px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div><div style="width:12px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div><div style="width:17px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div></div><span style="font-size:42px;color:#fff">WINDY</span></div>
+<div style="display:flex;align-items:center;gap:6px;margin-left:10px"><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><div style="width:12px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div><div style="width:17px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div><div style="width:20px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div></div><span style="font-size:42px;color:#ffc21a">DRIVE</span></div>
+</div>
+</div>
+</div>
+</div>
+<span style="font:600 11px 'JetBrains Mono',monospace;color:#666;text-align:center;white-space:pre-line">{{ s.label }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div class="dv-opt" id="3b">
+<div class="dv-olabel"><a class="dv-oid" href="#3b">3b</a>Android — icône adaptative 108 dp (zone sûre 66 dp), Play Store 512 × 512</div>
+<div class="dv-card" style="display:flex;gap:40px;padding:36px 40px;align-items:flex-end;flex-wrap:wrap">
+<div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+<div style="width:240px;height:240px;position:relative;box-shadow:0 10px 24px rgba(0,0,0,.18)">
+<div style="width:240px;height:240px;background:#1d3a33;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
+
+<div style="display:flex;flex-direction:column;transform:scale(0.88) skewX(-9deg);font-family:'Bowlby One';line-height:.86;text-shadow:0 3px 0 #2563eb">
+<div style="display:flex;align-items:center;gap:5px"><div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end"><div style="width:15px;height:4px;border-radius:2px;background:#fff;box-shadow:0 2px 0 #2563eb"></div><div style="width:9px;height:4px;border-radius:2px;background:#fff;box-shadow:0 2px 0 #2563eb"></div><div style="width:13px;height:4px;border-radius:2px;background:#fff;box-shadow:0 2px 0 #2563eb"></div></div><span style="font-size:32px;color:#fff">WINDY</span></div>
+<div style="display:flex;align-items:center;gap:5px;margin-left:8px"><div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end"><div style="width:9px;height:4px;border-radius:2px;background:#fff;box-shadow:0 2px 0 #2563eb"></div><div style="width:13px;height:4px;border-radius:2px;background:#fff;box-shadow:0 2px 0 #2563eb"></div><div style="width:15px;height:4px;border-radius:2px;background:#fff;box-shadow:0 2px 0 #2563eb"></div></div><span style="font-size:32px;color:#ffc21a">DRIVE</span></div>
+</div>
+</div>
+<div style="position:absolute;left:47px;top:47px;width:146px;height:146px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.85);box-sizing:border-box;pointer-events:none"></div>
+</div>
+<span style="font:600 11px 'JetBrains Mono',monospace;color:#666">Calque 108 dp · pointillés = zone sûre 66 dp</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+<div style="width:240px;height:240px;border-radius:28.8px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.18)">
+<div style="width:240px;height:240px;background:#1d3a33;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
+
+<div style="display:flex;flex-direction:column;transform:scale(1.14) skewX(-9deg);font-family:'Bowlby One';line-height:.86;text-shadow:0 4px 0 #2563eb">
+<div style="display:flex;align-items:center;gap:6px"><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><div style="width:20px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div><div style="width:12px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div><div style="width:17px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div></div><span style="font-size:42px;color:#fff">WINDY</span></div>
+<div style="display:flex;align-items:center;gap:6px;margin-left:10px"><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><div style="width:12px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div><div style="width:17px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div><div style="width:20px;height:5px;border-radius:3px;background:#fff;box-shadow:0 3px 0 #2563eb"></div></div><span style="font-size:42px;color:#ffc21a">DRIVE</span></div>
+</div>
+</div>
+</div>
+<span style="font:600 11px 'JetBrains Mono',monospace;color:#666">512 · Play Store (affiché à 240)</span>
+</div>
+<sc-for list="{{ andSizes }}" as="s" hint-placeholder-count="6">
+<div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+<div style="width:{{ s.px }}px;height:{{ s.px }}px;border-radius:{{ s.r }};overflow:hidden;position:relative;box-shadow:0 4px 10px rgba(0,0,0,.15)">
+<div style="position:absolute;top:0;left:0;width:240px;height:240px;transform:scale({{ s.k }}) translate({{ s.off }}px,{{ s.off }}px);transform-origin:0 0">
+<div style="width:240px;height:240px;background:#1d3a33;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
+
+<div style="display:flex;flex-direction:column;transform:scale(0.88) skewX(-9deg);font-family:'Bowlby One';line-height:.86;text-shadow:0 3px 0 #2563eb">
+<div style="display:flex;align-items:center;gap:5px"><div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end"><div style="width:15px;height:4px;border-radius:2px;background:#fff;box-shadow:0 2px 0 #2563eb"></div><div style="width:9px;height:4px;border-radius:2px;background:#fff;box-shadow:0 2px 0 #2563eb"></div><div style="width:13px;height:4px;border-radius:2px;background:#fff;box-shadow:0 2px 0 #2563eb"></div></div><span style="font-size:32px;color:#fff">WINDY</span></div>
+<div style="display:flex;align-items:center;gap:5px;margin-left:8px"><div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end"><div style="width:9px;height:4px;border-radius:2px;background:#fff;box-shadow:0 2px 0 #2563eb"></div><div style="width:13px;height:4px;border-radius:2px;background:#fff;box-shadow:0 2px 0 #2563eb"></div><div style="width:15px;height:4px;border-radius:2px;background:#fff;box-shadow:0 2px 0 #2563eb"></div></div><span style="font-size:32px;color:#ffc21a">DRIVE</span></div>
+</div>
+</div>
+</div>
+</div>
+<span style="font:600 11px 'JetBrains Mono',monospace;color:#666;text-align:center;white-space:pre-line">{{ s.label }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Ensuite : « ajoute un vibreur en pied » · « exporte les PNG à chaque taille »</p>
+</section>
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname" style="white-space:nowrap">Windy Drive — logo, écrans, partage · direction</span><a class="dv-oid" href="#1a">1a</a></div>
+<p style="margin:0 0 28px;max-width:760px;font:13px/1.55 system-ui,sans-serif;color:rgba(0,0,0,.62);text-wrap:pretty">Le premier téléphone est un prototype complet : accueil → partie → fin de partie → partage, avec le record gardé en mémoire. Les boutons (son, vent, classement, menu) fonctionnent. L'icône est traitée dans un autre onglet, donc absente ici.</p>
+<div class="dv-opts">
+
+<div class="dv-opt" id="2a">
+<div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Logo — version nuit retenue, le vent souffle sur les deux mots</div>
+<div class="dv-card" style="display:flex;gap:20px;padding:32px;flex-wrap:wrap">
+<div style="width:320px;height:220px;border-radius:14px;background:#1d3a33;display:flex;align-items:center;justify-content:center">
+<div style="display:flex;flex-direction:column;transform:skewX(-9deg);font-family:'Bowlby One';line-height:.88;text-shadow:0 5px 0 #2563eb"><div style="display:flex;align-items:center;gap:10px"><div style="display:flex;flex-direction:column;gap:9px;align-items:flex-end"><div style="width:30px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div><div style="width:18px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div><div style="width:26px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div></div><span style="font-size:62px;color:#fff">WINDY</span></div><div style="display:flex;align-items:center;gap:10px;margin-left:16px"><div style="display:flex;flex-direction:column;gap:9px;align-items:flex-end"><div style="width:18px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div><div style="width:26px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div><div style="width:30px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div></div><span style="font-size:62px;color:#ffc21a">DRIVE</span></div></div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2b">
+<div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>Écrans — accueil (prototype jouable), accueil nuit, fin de partie avec record</div>
+<div class="dv-card" style="display:flex;gap:48px;padding:40px 48px 48px;align-items:flex-start">
+
+<div style="display:flex;flex-direction:column;gap:14px"><div style="font:600 11px 'JetBrains Mono',monospace;color:#888;text-transform:uppercase;letter-spacing:.08em">Prototype · tape pour jouer</div>
+<div data-proto="1" style="position:relative;width:390px;height:844px;border-radius:52px;overflow:hidden;box-shadow:0 0 0 9px #121212,0 0 0 10px #3a3a3a,0 30px 60px rgba(0,0,0,.28);background:#9fd062;margin:10px">
+<x-import component-from-global-scope="derive-road" from="./derive-engine.js" theme="summer" seed="31" hud="0" managed="1" wind="{{ protoWind }}" speed="{{ speedAttr }}" style="position:absolute;inset:0" hint-size="390px,844px"></x-import>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div onClick="{{ start }}" style="position:absolute;inset:0;cursor:pointer;background:linear-gradient(180deg,rgba(22,40,12,.62) 0%,rgba(22,40,12,0) 44%,rgba(22,40,12,0) 58%,rgba(22,40,12,.7) 100%);display:flex;flex-direction:column;align-items:center;padding:62px 22px 40px;box-sizing:border-box;font-family:'DM Sans',sans-serif;color:#fff">
+<div style="width:100%;display:flex;justify-content:space-between">
+<div onClick="{{ toggleSound }}" style="height:44px;padding:0 16px;border-radius:999px;background:rgba(0,0,0,.28);border:2px solid rgba(255,255,255,.9);display:flex;align-items:center;font-weight:700;font-size:14px;cursor:pointer;box-sizing:border-box">{{ soundLabel }}</div>
+<div onClick="{{ openBoard }}" style="height:44px;padding:0 16px;border-radius:999px;background:rgba(0,0,0,.28);border:2px solid rgba(255,255,255,.9);display:flex;align-items:center;font-weight:700;font-size:14px;cursor:pointer;box-sizing:border-box">Classement</div>
+</div>
+<div style="margin-top:56px;display:flex;flex-direction:column;transform:skewX(-9deg);font-family:'Bowlby One';line-height:.88;text-shadow:0 5px 0 #2563eb"><div style="display:flex;align-items:center;gap:10px"><div style="display:flex;flex-direction:column;gap:9px;align-items:flex-end"><div style="width:30px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div><div style="width:18px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div><div style="width:26px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div></div><span style="font-size:62px;color:#fff">WINDY</span></div><div style="display:flex;align-items:center;gap:10px;margin-left:16px"><div style="display:flex;flex-direction:column;gap:9px;align-items:flex-end"><div style="width:18px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div><div style="width:26px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div><div style="width:30px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div></div><span style="font-size:62px;color:#ffc21a">DRIVE</span></div></div>
+<div style="margin-top:30px;display:flex;align-items:center;gap:10px;background:#fbf7ee;color:#2a2a2a;padding:9px 18px;border-radius:999px;box-shadow:0 4px 0 rgba(36,64,26,.5)"><span style="font-weight:700;font-size:12px;letter-spacing:.14em;color:#2563eb">RECORD</span><span style="font-family:'Bowlby One';font-size:20px;white-space:nowrap">{{ bestStr }} m</span></div>
+<div style="flex:1"></div>
+{{ tapHint }}
+<div style="font-size:14px;font-weight:500;margin-top:8px">Chaque tap braque contre le vent</div>
+<div style="margin-top:34px;display:flex;align-items:center;gap:12px">
+<span style="font-weight:700;font-size:12px;letter-spacing:.16em">VENT</span>
+<div style="display:flex;padding:4px;border-radius:999px;background:rgba(0,0,0,.3);gap:4px">
+<div onClick="{{ windL }}" style="height:40px;padding:0 16px;border-radius:999px;display:flex;align-items:center;font-weight:700;font-size:14px;white-space:nowrap;cursor:pointer;background:{{ wlBg }};color:{{ wlFg }}">← Gauche</div>
+<div onClick="{{ windR }}" style="height:40px;padding:0 16px;border-radius:999px;display:flex;align-items:center;font-weight:700;font-size:14px;white-space:nowrap;cursor:pointer;background:{{ wrBg }};color:{{ wrFg }}">Droite →</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isOver }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ start }}" style="position:absolute;inset:0;cursor:pointer;background:linear-gradient(180deg,rgba(22,40,12,.72) 0%,rgba(22,40,12,.35) 48%,rgba(22,40,12,.8) 100%);display:flex;flex-direction:column;align-items:center;padding:62px 28px 46px;box-sizing:border-box;font-family:'DM Sans',sans-serif;color:#fff">
+<div style="width:100%;display:flex"><div onClick="{{ home }}" style="height:44px;padding:0 16px;border-radius:999px;background:rgba(0,0,0,.28);border:2px solid rgba(255,255,255,.9);display:flex;align-items:center;font-weight:700;font-size:14px;cursor:pointer;box-sizing:border-box">Menu</div></div>
+<div style="height:30px"></div>
+<sc-if value="{{ isRecord }}" hint-placeholder-val="{{ false }}"><div style="font-family:'Bowlby One';font-size:28px;color:#2a2a2a;background:#ffc21a;padding:10px 20px;border-radius:16px;transform:rotate(-4deg);box-shadow:0 6px 0 #b88700">Nouveau record !</div></sc-if>
+<sc-if value="{{ notRecord }}" hint-placeholder-val="{{ true }}"><div style="font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;background:#e5432f;padding:8px 14px;border-radius:999px">Sortie de route</div></sc-if>
+<div style="font-family:'Bowlby One';font-size:96px;line-height:1;margin-top:22px;text-shadow:0 6px 0 #24401a;white-space:nowrap">{{ lastStr }}</div>
+<div style="font-weight:700;font-size:17px;letter-spacing:.14em;text-transform:uppercase;margin-top:4px">mètres</div>
+<sc-if value="{{ isRecord }}" hint-placeholder-val="{{ false }}"><div style="margin-top:30px;font-weight:700;font-size:15px">Ancien record {{ prevBestStr }} m · <span style="color:#ffc21a">+{{ gainStr }} m</span></div></sc-if>
+<sc-if value="{{ notRecord }}" hint-placeholder-val="{{ true }}">
+<div style="margin-top:34px;width:100%;max-width:300px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;font-weight:700"><span style="font-size:19px;color:#ffc21a;white-space:nowrap">Plus que {{ gapStr }} m !</span><span style="font-size:14px;white-space:nowrap">Record {{ bestStr }} m</span></div>
+<div style="height:12px;border-radius:6px;background:rgba(255,255,255,.25);overflow:hidden"><div style="width:{{ barPct }};height:100%;background:#ffc21a;border-radius:6px"></div></div>
+</div>
+</sc-if>
+<div style="flex:1"></div>
+<div style="width:100%;height:84px;border-radius:26px;background:#ffc21a;color:#2a2a2a;font-family:'Bowlby One';font-size:30px;display:flex;align-items:center;justify-content:center;box-shadow:0 7px 0 #b88700;cursor:pointer" style-active="transform:translateY(5px);box-shadow:0 2px 0 #b88700">Rejouer</div>
+<div style="display:flex;gap:14px;align-items:center;margin-top:22px;width:100%">
+<div onClick="{{ share }}" style="height:54px;padding:0 22px;border-radius:18px;border:2px solid #fff;display:flex;align-items:center;font-weight:700;font-size:16px;cursor:pointer">Partager</div>
+<div style="font-size:14px;line-height:1.3;opacity:.85">ou tape n'importe où pour relancer</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isShare }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;background:rgba(12,22,9,.9);display:flex;flex-direction:column;align-items:center;padding:64px 24px 34px;box-sizing:border-box;gap:18px;font-family:'DM Sans',sans-serif;color:#fff">
+<div style="font-weight:700;font-size:15px">Partager ta distance</div>
+<div style="width:324px;height:576px;position:relative;border-radius:16px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.4)">
+<div style="position:absolute;top:0;left:0;width:360px;height:640px;transform:scale(.9);transform-origin:0 0;overflow:hidden;background:#9fd062">
+<x-import component-from-global-scope="derive-road" from="./derive-engine.js" theme="summer" seed="5" mode="frozen" distance="2150" style="position:absolute;inset:0" hint-size="360px,640px"></x-import>
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,40,12,.78) 0%,rgba(22,40,12,.2) 50%,rgba(22,40,12,.85) 100%);display:flex;flex-direction:column;align-items:center;padding:46px 24px 30px;box-sizing:border-box">
+<div style="display:flex;flex-direction:column;transform:skewX(-9deg);font-family:'Bowlby One';line-height:.88;text-shadow:0 4px 0 #2563eb"><div style="display:flex;align-items:center;gap:8px"><div style="display:flex;flex-direction:column;gap:7px;align-items:flex-end"><div style="width:22px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #2563eb"></div><div style="width:13px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #2563eb"></div><div style="width:19px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #2563eb"></div></div><span style="font-size:44px;color:#fff">WINDY</span></div><div style="display:flex;align-items:center;gap:8px;margin-left:11px"><div style="display:flex;flex-direction:column;gap:7px;align-items:flex-end"><div style="width:13px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #2563eb"></div><div style="width:19px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #2563eb"></div><div style="width:22px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #2563eb"></div></div><span style="font-size:44px;color:#ffc21a">DRIVE</span></div></div>
+<div style="margin-top:58px;font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase">J'ai tenu</div>
+<div style="display:flex;align-items:baseline;gap:6px;margin-top:6px;white-space:nowrap;text-shadow:0 6px 0 #24401a"><span style="font-family:'Bowlby One';font-size:76px;line-height:1">{{ lastStr }}</span><span style="font-family:'Bowlby One';font-size:32px">m</span></div>
+<div style="margin-top:26px;font-family:'Bowlby One';font-size:28px;color:#2a2a2a;background:#ffc21a;padding:10px 20px;border-radius:16px;transform:rotate(-3deg);box-shadow:0 6px 0 #b88700;white-space:nowrap">Tu feras mieux ?</div>
+<div style="flex:1"></div>
+<div style="font-weight:700;font-size:14px">Windy Drive · gratuit sur iOS et Android</div>
+</div>
+</div>
+</div>
+<div style="display:flex;gap:10px;width:100%">
+<div onClick="{{ sendShare }}" style="flex:1;height:52px;border-radius:16px;background:#ffc21a;color:#2a2a2a;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;cursor:pointer">Story Instagram</div>
+<div onClick="{{ sendShare }}" style="flex:1;height:52px;border-radius:16px;background:#fbf7ee;color:#2a2a2a;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;cursor:pointer">WhatsApp</div>
+</div>
+<div onClick="{{ closeShare }}" style="height:44px;display:flex;align-items:center;font-weight:700;font-size:15px;cursor:pointer;text-decoration:underline">Fermer</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:50%;bottom:150px;transform:translateX(-50%);background:#fbf7ee;color:#2a2a2a;font:700 14px 'DM Sans',sans-serif;padding:12px 18px;border-radius:999px;white-space:nowrap;box-shadow:0 6px 16px rgba(0,0,0,.25);pointer-events:none">{{ toast }}</div></sc-if>
+<div style="position:absolute;top:11px;left:50%;transform:translateX(-50%);width:118px;height:34px;border-radius:20px;background:#050505;pointer-events:none"></div>
+</div></div>
+
+<div style="display:flex;flex-direction:column;gap:14px"><div style="font:600 11px 'JetBrains Mono',monospace;color:#888;text-transform:uppercase;letter-spacing:.08em">Accueil · mode sombre</div>
+<div style="position:relative;width:390px;height:844px;border-radius:52px;overflow:hidden;box-shadow:0 0 0 9px #121212,0 0 0 10px #3a3a3a,0 30px 60px rgba(0,0,0,.28);background:#1d3a33;margin:10px">
+<x-import component-from-global-scope="derive-road" from="./derive-engine.js" theme="summer-night" seed="34" hud="0" wind="{{ windAttr }}" speed="{{ speedAttr }}" style="position:absolute;inset:0" hint-size="390px,844px"></x-import>
+<div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(3,9,16,.7) 0%,rgba(3,9,16,0) 44%,rgba(3,9,16,0) 58%,rgba(3,9,16,.75) 100%);display:flex;flex-direction:column;align-items:center;padding:62px 22px 40px;box-sizing:border-box;font-family:'DM Sans',sans-serif;color:#fff">
+<div style="width:100%;display:flex;justify-content:space-between">
+<div style="height:44px;padding:0 16px;border-radius:999px;background:rgba(0,0,0,.35);border:2px solid rgba(255,255,255,.9);display:flex;align-items:center;font-weight:700;font-size:14px;box-sizing:border-box">Son activé</div>
+<div style="height:44px;padding:0 16px;border-radius:999px;background:rgba(0,0,0,.35);border:2px solid rgba(255,255,255,.9);display:flex;align-items:center;font-weight:700;font-size:14px;box-sizing:border-box">Classement</div>
+</div>
+<div style="margin-top:56px;display:flex;flex-direction:column;transform:skewX(-9deg);font-family:'Bowlby One';line-height:.88;text-shadow:0 5px 0 #2563eb"><div style="display:flex;align-items:center;gap:10px"><div style="display:flex;flex-direction:column;gap:9px;align-items:flex-end"><div style="width:30px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div><div style="width:18px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div><div style="width:26px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div></div><span style="font-size:62px;color:#fff">WINDY</span></div><div style="display:flex;align-items:center;gap:10px;margin-left:16px"><div style="display:flex;flex-direction:column;gap:9px;align-items:flex-end"><div style="width:18px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div><div style="width:26px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div><div style="width:30px;height:7px;border-radius:4px;background:#fff;box-shadow:0 5px 0 #2563eb"></div></div><span style="font-size:62px;color:#ffc21a">DRIVE</span></div></div>
+<div style="margin-top:30px;display:flex;align-items:center;gap:10px;background:#1a2b27;color:#fff;padding:9px 18px;border-radius:999px;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35)"><span style="font-weight:700;font-size:12px;letter-spacing:.14em;color:#ffc21a">RECORD</span><span style="font-family:'Bowlby One';font-size:20px;white-space:nowrap">2 310 m</span></div>
+<div style="flex:1"></div>
+<div style="font-family:'Bowlby One';font-size:30px;text-shadow:0 4px 0 #000">Tape pour jouer</div>
+<div style="font-size:14px;font-weight:500;margin-top:8px">Chaque tap braque contre le vent</div>
+<div style="margin-top:34px;display:flex;align-items:center;gap:12px">
+<span style="font-weight:700;font-size:12px;letter-spacing:.16em">VENT</span>
+<div style="display:flex;padding:4px;border-radius:999px;background:rgba(0,0,0,.4);gap:4px">
+<div style="height:40px;padding:0 16px;border-radius:999px;display:flex;align-items:center;font-weight:700;font-size:14px;white-space:nowrap">← Gauche</div>
+<div style="height:40px;padding:0 16px;border-radius:999px;display:flex;align-items:center;font-weight:700;font-size:14px;white-space:nowrap;background:#fbf7ee;color:#2a2a2a">Droite →</div>
+</div>
+</div>
+</div>
+<div style="position:absolute;top:11px;left:50%;transform:translateX(-50%);width:118px;height:34px;border-radius:20px;background:#050505;pointer-events:none"></div>
+</div></div>
+
+<div style="display:flex;flex-direction:column;gap:14px"><div style="font:600 11px 'JetBrains Mono',monospace;color:#888;text-transform:uppercase;letter-spacing:.08em">Fin de partie · nouveau record</div>
+<div style="position:relative;width:390px;height:844px;border-radius:52px;overflow:hidden;box-shadow:0 0 0 9px #121212,0 0 0 10px #3a3a3a,0 30px 60px rgba(0,0,0,.28);background:#9fd062;margin:10px">
+<x-import component-from-global-scope="derive-road" from="./derive-engine.js" theme="summer" seed="37" mode="frozen" distance="2500" wind="{{ windAttr }}" style="position:absolute;inset:0" hint-size="390px,844px"></x-import>
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,40,12,.72) 0%,rgba(22,40,12,.35) 48%,rgba(22,40,12,.8) 100%);display:flex;flex-direction:column;align-items:center;padding:62px 28px 46px;box-sizing:border-box;font-family:'DM Sans',sans-serif;color:#fff">
+<div style="width:100%;display:flex"><div style="height:44px;padding:0 16px;border-radius:999px;background:rgba(0,0,0,.28);border:2px solid rgba(255,255,255,.9);display:flex;align-items:center;font-weight:700;font-size:14px;box-sizing:border-box">Menu</div></div>
+<div style="height:30px"></div>
+<div style="font-family:'Bowlby One';font-size:28px;color:#2a2a2a;background:#ffc21a;padding:10px 20px;border-radius:16px;transform:rotate(-4deg);box-shadow:0 6px 0 #b88700">Nouveau record !</div>
+<div style="font-family:'Bowlby One';font-size:96px;line-height:1;margin-top:22px;text-shadow:0 6px 0 #24401a;white-space:nowrap">2 586</div>
+<div style="font-weight:700;font-size:17px;letter-spacing:.14em;text-transform:uppercase;margin-top:4px">mètres</div>
+<div style="margin-top:30px;font-weight:700;font-size:15px">Ancien record 2 310 m · <span style="color:#ffc21a">+276 m</span></div>
+<div style="flex:1"></div>
+<div style="width:100%;height:84px;border-radius:26px;background:#ffc21a;color:#2a2a2a;font-family:'Bowlby One';font-size:30px;display:flex;align-items:center;justify-content:center;box-shadow:0 7px 0 #b88700">Rejouer</div>
+<div style="display:flex;gap:14px;align-items:center;margin-top:22px;width:100%">
+<div style="height:54px;padding:0 22px;border-radius:18px;border:2px solid #fff;display:flex;align-items:center;font-weight:700;font-size:16px">Partager</div>
+<div style="font-size:14px;line-height:1.3;opacity:.85">ou tape n'importe où pour relancer</div>
+</div>
+</div>
+<div style="position:absolute;top:11px;left:50%;transform:translateX(-50%);width:118px;height:34px;border-radius:20px;background:#050505;pointer-events:none"></div>
+</div></div>
+
+</div>
+</div>
+
+<div class="dv-opt" id="2c">
+<div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a>Cartes de partage — format story 1080 × 1920 (affichées au tiers)</div>
+<div class="dv-card" style="display:flex;gap:40px;padding:40px 48px 48px;align-items:flex-start;flex-wrap:wrap">
+
+<div style="display:flex;flex-direction:column;gap:14px"><div style="font:600 11px 'JetBrains Mono',monospace;color:#888;text-transform:uppercase;letter-spacing:.08em">Défi · capture de la sortie de route</div>
+<div style="position:relative;width:360px;height:640px;overflow:hidden;background:#9fd062;border-radius:6px;box-shadow:0 20px 40px rgba(0,0,0,.18);font-family:'DM Sans',sans-serif;color:#fff">
+<x-import component-from-global-scope="derive-road" from="./derive-engine.js" theme="summer" seed="5" mode="frozen" distance="2150" style="position:absolute;inset:0" hint-size="360px,640px"></x-import>
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,40,12,.78) 0%,rgba(22,40,12,.2) 50%,rgba(22,40,12,.85) 100%);display:flex;flex-direction:column;align-items:center;padding:46px 24px 30px;box-sizing:border-box">
+<div style="display:flex;flex-direction:column;transform:skewX(-9deg);font-family:'Bowlby One';line-height:.88;text-shadow:0 4px 0 #2563eb"><div style="display:flex;align-items:center;gap:8px"><div style="display:flex;flex-direction:column;gap:7px;align-items:flex-end"><div style="width:22px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #2563eb"></div><div style="width:13px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #2563eb"></div><div style="width:19px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #2563eb"></div></div><span style="font-size:44px;color:#fff">WINDY</span></div><div style="display:flex;align-items:center;gap:8px;margin-left:11px"><div style="display:flex;flex-direction:column;gap:7px;align-items:flex-end"><div style="width:13px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #2563eb"></div><div style="width:19px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #2563eb"></div><div style="width:22px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #2563eb"></div></div><span style="font-size:44px;color:#ffc21a">DRIVE</span></div></div>
+<div style="margin-top:58px;font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase">J'ai tenu</div>
+<div style="display:flex;align-items:baseline;gap:6px;margin-top:6px;white-space:nowrap;text-shadow:0 6px 0 #24401a"><span style="font-family:'Bowlby One';font-size:76px;line-height:1">2 223</span><span style="font-family:'Bowlby One';font-size:32px">m</span></div>
+<div style="margin-top:26px;font-family:'Bowlby One';font-size:28px;color:#2a2a2a;background:#ffc21a;padding:10px 20px;border-radius:16px;transform:rotate(-3deg);box-shadow:0 6px 0 #b88700;white-space:nowrap">Tu feras mieux ?</div>
+<div style="flex:1"></div>
+<div style="font-weight:700;font-size:14px">Windy Drive · gratuit sur iOS et Android</div>
+</div>
+</div></div>
+
+<div style="display:flex;flex-direction:column;gap:14px"><div style="font:600 11px 'JetBrains Mono',monospace;color:#888;text-transform:uppercase;letter-spacing:.08em">Record · aplat cobalt et vibreurs</div>
+<div style="position:relative;width:360px;height:640px;overflow:hidden;background:#2563eb;border-radius:6px;box-shadow:0 20px 40px rgba(0,0,0,.18);font-family:'DM Sans',sans-serif;color:#fff;display:flex;flex-direction:column;align-items:center;padding:56px 40px 34px;box-sizing:border-box">
+<div style="position:absolute;top:0;bottom:0;left:0;width:20px;background:repeating-linear-gradient(180deg,#e5432f 0 32px,#fbf7ee 32px 64px)"></div>
+<div style="position:absolute;top:0;bottom:0;right:0;width:20px;background:repeating-linear-gradient(180deg,#e5432f 0 32px,#fbf7ee 32px 64px)"></div>
+<div style="display:flex;flex-direction:column;transform:skewX(-9deg);font-family:'Bowlby One';line-height:.88;text-shadow:0 4px 0 #173c9c"><div style="display:flex;align-items:center;gap:8px"><div style="display:flex;flex-direction:column;gap:7px;align-items:flex-end"><div style="width:22px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #173c9c"></div><div style="width:13px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #173c9c"></div><div style="width:19px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #173c9c"></div></div><span style="font-size:44px;color:#fff">WINDY</span></div><div style="display:flex;align-items:center;gap:8px;margin-left:11px"><div style="display:flex;flex-direction:column;gap:7px;align-items:flex-end"><div style="width:13px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #173c9c"></div><div style="width:19px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #173c9c"></div><div style="width:22px;height:5px;border-radius:3px;background:#fff;box-shadow:0 4px 0 #173c9c"></div></div><span style="font-size:44px;color:#ffc21a">DRIVE</span></div></div>
+<div style="margin-top:64px;font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;background:#e5432f;padding:8px 14px;border-radius:999px">Nouveau record</div>
+<div style="font-family:'Bowlby One';font-size:80px;line-height:1;margin-top:18px;text-shadow:0 6px 0 #173c9c;white-space:nowrap">2 586</div>
+<div style="font-weight:700;font-size:16px;letter-spacing:.14em;text-transform:uppercase;margin-top:4px">mètres</div>
+<div style="margin-top:34px;font-family:'Bowlby One';font-size:28px;color:#2a2a2a;background:#ffc21a;padding:10px 20px;border-radius:16px;transform:rotate(-3deg);box-shadow:0 6px 0 #b88700;white-space:nowrap">Bats-moi !</div>
+<div style="flex:1"></div>
+<div style="font-weight:700;font-size:14px">Windy Drive · gratuit sur iOS et Android</div>
+</div></div>
+
+</div>
+</div>
+
+</div>
+<p class="dv-next">Ensuite : « ajoute l'écran de classement » · « teste une variante de voiture à débloquer » · « fige le prototype en version nuit »</p>
+</section>
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Direction retenue — Plein Été</span></div>
+<p style="margin:0 0 28px;max-width:760px;font:13px/1.55 system-ui,sans-serif;color:rgba(0,0,0,.62);text-wrap:pretty">Les écrans de jeu tournent vraiment : démo automatique (elle finit par sortir de route pour montrer l'effet). Clique dans un téléphone pour prendre le volant — chaque tap braque contre le vent. Tweaks : direction du vent, vitesse.</p>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Plein Été — route de campagne, jour</div>
+<div class="dv-card" style="display:flex;gap:52px;padding:40px 48px 48px;align-items:flex-start">
+<div style="width:300px;flex:none;display:flex;flex-direction:column;gap:26px;font-family:'DM Sans',sans-serif">
+<div style="display:flex;flex-direction:column;gap:6px"><div style="font-family:'Bowlby One';font-size:44px;line-height:1;color:#2563eb">Windy Drive</div><div style="font-size:14px;line-height:1.5;color:#4a4a4a;text-wrap:pretty">Départementale en juillet. Aplats saturés, vibreurs rouge et blanc de circuit, ombres portées douces. Joyeux, immédiat, très « jeu mobile ».</div></div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+<div style="display:flex;flex-direction:column;gap:5px"><div style="height:44px;border-radius:8px;background:#9fd062"></div><span style="font:500 10px 'JetBrains Mono',monospace;color:#666">#9FD062</span></div>
+<div style="display:flex;flex-direction:column;gap:5px"><div style="height:44px;border-radius:8px;background:#5d6169"></div><span style="font:500 10px 'JetBrains Mono',monospace;color:#666">#5D6169</span></div>
+<div style="display:flex;flex-direction:column;gap:5px"><div style="height:44px;border-radius:8px;background:#e5432f"></div><span style="font:500 10px 'JetBrains Mono',monospace;color:#666">#E5432F</span></div>
+<div style="display:flex;flex-direction:column;gap:5px"><div style="height:44px;border-radius:8px;background:#fbf7ee;box-shadow:inset 0 0 0 1px #ddd"></div><span style="font:500 10px 'JetBrains Mono',monospace;color:#666">#FBF7EE</span></div>
+<div style="display:flex;flex-direction:column;gap:5px"><div style="height:44px;border-radius:8px;background:#2563eb"></div><span style="font:500 10px 'JetBrains Mono',monospace;color:#666">#2563EB</span></div>
+<div style="display:flex;flex-direction:column;gap:5px"><div style="height:44px;border-radius:8px;background:#ffc21a"></div><span style="font:500 10px 'JetBrains Mono',monospace;color:#666">#FFC21A</span></div>
+<div style="display:flex;flex-direction:column;gap:5px"><div style="height:44px;border-radius:8px;background:#3d8c3a"></div><span style="font:500 10px 'JetBrains Mono',monospace;color:#666">#3D8C3A</span></div>
+<div style="display:flex;flex-direction:column;gap:5px"><div style="height:44px;border-radius:8px;background:#e9d9a2"></div><span style="font:500 10px 'JetBrains Mono',monospace;color:#666">#E9D9A2</span></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid #eee;padding-top:18px">
+<div style="font-family:'Bowlby One';font-size:58px;line-height:1;color:#1a1a1a;white-space:nowrap">1 284</div>
+<div style="font:500 11px 'JetBrains Mono',monospace;color:#888">Score — Bowlby One · Interface — DM Sans 500/700</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.45;color:#333">
+<div><b>Voiture</b> — coupé bleu cobalt à double bande blanche, complémentaire du vert : on la trouve en 0,1 s.</div>
+<div><b>Bordures</b> — vibreurs rouge/blanc côté intérieur ; le bord extérieur du vibreur = limite exacte de sortie.</div>
+<div><b>Rétrécissement</b> — panneau jaune 400 m avant, flèches jaunes convergentes peintes au sol, puis vibreurs jaune/noir sur toute la zone étroite.</div>
+<div><b>Vent</b> — aigrettes de pissenlit blanches qui traversent l'écran en biais.</div>
+<div><b>Sortie</b> — nuage de poussière beige, gerbe d'étincelles, secousse 0,5 s, tête-à-queue.</div>
+</div>
+</div>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:14px"><div style="font:600 11px 'JetBrains Mono',monospace;color:#888;text-transform:uppercase;letter-spacing:.08em">Jeu · clique pour jouer</div>
+<div style="position:relative;width:390px;height:844px;border-radius:52px;overflow:hidden;box-shadow:0 0 0 9px #121212,0 0 0 10px #3a3a3a,0 30px 60px rgba(0,0,0,.28);background:#9fd062;margin:10px">
+<x-import component-from-global-scope="derive-road" from="./derive-engine.js" theme="summer" seed="3" wind="{{ windAttr }}" speed="{{ speedAttr }}" style="position:absolute;inset:0" hint-size="390px,844px"></x-import>
+<div style="position:absolute;top:11px;left:50%;transform:translateX(-50%);width:118px;height:34px;border-radius:20px;background:#050505;pointer-events:none"></div>
+</div></div>
+<div style="display:flex;flex-direction:column;gap:14px"><div style="font:600 11px 'JetBrains Mono',monospace;color:#888;text-transform:uppercase;letter-spacing:.08em">Fin de partie · « j'y étais presque »</div>
+<div style="position:relative;width:390px;height:844px;border-radius:52px;overflow:hidden;box-shadow:0 0 0 9px #121212,0 0 0 10px #3a3a3a,0 30px 60px rgba(0,0,0,.28);background:#9fd062;margin:10px">
+<x-import component-from-global-scope="derive-road" from="./derive-engine.js" theme="summer" seed="5" mode="frozen" distance="2150" wind="{{ windAttr }}" style="position:absolute;inset:0" hint-size="390px,844px"></x-import>
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,40,12,.72) 0%,rgba(22,40,12,.35) 48%,rgba(22,40,12,.8) 100%);display:flex;flex-direction:column;align-items:center;padding:112px 28px 46px;box-sizing:border-box;font-family:'DM Sans',sans-serif;color:#fff">
+<div style="font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;background:#e5432f;padding:8px 14px;border-radius:999px">Sortie de route</div>
+<div style="font-family:'Bowlby One';font-size:108px;line-height:1;margin-top:22px;text-shadow:0 6px 0 #24401a;white-space:nowrap">2 223</div>
+<div style="font-weight:700;font-size:17px;letter-spacing:.14em;text-transform:uppercase;margin-top:4px">mètres</div>
+<div style="margin-top:34px;width:100%;max-width:300px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;font-weight:700"><span style="font-size:19px;color:#ffc21a">Plus que 87 m !</span><span style="font-size:14px">Record 2 310 m</span></div>
+<div style="height:12px;border-radius:6px;background:rgba(255,255,255,.25);overflow:hidden"><div style="width:96%;height:100%;background:#ffc21a;border-radius:6px"></div></div>
+</div>
+<div style="flex:1"></div>
+<div style="width:100%;height:84px;border-radius:26px;background:#ffc21a;color:#2a2a2a;font-family:'Bowlby One';font-size:30px;display:flex;align-items:center;justify-content:center;box-shadow:0 7px 0 #b88700;cursor:pointer" style-active="transform:translateY(5px);box-shadow:0 2px 0 #b88700">Rejouer</div>
+<div style="display:flex;gap:14px;align-items:center;margin-top:22px;width:100%">
+<div style="height:54px;padding:0 22px;border-radius:18px;border:2px solid #fff;display:flex;align-items:center;font-weight:700;font-size:16px;cursor:pointer">Partager</div>
+<div style="font-size:14px;line-height:1.3;opacity:.85">ou tape n'importe où pour relancer</div>
+</div>
+</div>
+<div style="position:absolute;top:11px;left:50%;transform:translateX(-50%);width:118px;height:34px;border-radius:20px;background:#050505;pointer-events:none"></div>
+</div></div>
+<div style="display:flex;flex-direction:column;gap:14px"><div style="font:600 11px 'JetBrains Mono',monospace;color:#888;text-transform:uppercase;letter-spacing:.08em">Mode sombre · crépuscule, phares</div>
+<div style="position:relative;width:390px;height:844px;border-radius:52px;overflow:hidden;box-shadow:0 0 0 9px #121212,0 0 0 10px #3a3a3a,0 30px 60px rgba(0,0,0,.28);background:#1d3a33;margin:10px">
+<x-import component-from-global-scope="derive-road" from="./derive-engine.js" theme="summer-night" seed="8" wind="{{ windAttr }}" speed="{{ speedAttr }}" style="position:absolute;inset:0" hint-size="390px,844px"></x-import>
+<div style="position:absolute;top:11px;left:50%;transform:translateX(-50%);width:118px;height:34px;border-radius:20px;background:#050505;pointer-events:none"></div>
+</div></div>
+</div>
+</div>
+</div>
+
+</div>
+
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;wind&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;droite&quot;,&quot;gauche&quot;],&quot;default&quot;:&quot;droite&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Jeu&quot;},&quot;speed&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;normale&quot;,&quot;rapide&quot;],&quot;default&quot;:&quot;normale&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Jeu&quot;}}">
+class Component extends DCLogic {
+  state = { screen: 'home', sound: true, wind: null, best: Number(localStorage.getItem('windy-best')) || 640, last: 0, prevBest: 0, isRecord: false, toast: '' };
+  componentDidMount() {
+    this._onCrash = e => {
+      if (!e.target.closest || !e.target.closest('[data-proto]')) return;
+      const m = e.detail.m; clearTimeout(this._t);
+      this._t = setTimeout(() => {
+        const prev = this.state.best, rec = m > prev;
+        if (rec) localStorage.setItem('windy-best', String(m));
+        const r = this.road(); if (r) r.setAttribute('hud', '0');
+        this.setState({ screen: 'over', last: m, prevBest: prev, isRecord: rec, best: rec ? m : prev });
+      }, 850);
+    };
+    document.addEventListener('dr-crash', this._onCrash);
+  }
+  componentWillUnmount() { document.removeEventListener('dr-crash', this._onCrash); clearTimeout(this._t); clearTimeout(this._tt); }
+  road() { return document.querySelector('[data-proto] derive-road'); }
+  flash(t) { clearTimeout(this._tt); this.setState({ toast: t }); this._tt = setTimeout(() => this.setState({ toast: '' }), 1600); }
+  renderVals() {
+    const s = this.state, fmt = n => Math.max(0, Math.round(n)).toLocaleString('fr-FR').replace(/\s/g, '\u202F');
+    const windAttr = (this.props.wind ?? 'droite') === 'gauche' ? 'left' : 'right';
+    const pw = s.wind ?? windAttr;
+    const stop = e => e && e.stopPropagation();
+    const on = { bg: '#fbf7ee', fg: '#2a2a2a' }, off = { bg: 'transparent', fg: '#ffffff' };
+    const ios = [[180, 'iPhone @3x\n180'], [120, 'iPhone @2x\n120'], [87, 'Réglages @3x\n87'], [80, 'Spotlight @2x\n80'], [60, 'Notif. @3x\n60']];
+    const and = [[512, '12%', 'Play Store\n512 (à 240)', 240], [192, '50%', 'xxxhdpi\n192', 192], [144, '30%', 'xxhdpi · squircle\n144', 144], [96, '50%', 'xhdpi\n96', 96], [72, '18%', 'hdpi · arrondi\n72', 72], [48, '50%', 'mdpi\n48', 48]];
+    return {
+      iosSizes: ios.map(([px, label]) => ({ px, label, r: (px * 0.2237).toFixed(1), k: px / 240 })),
+      andSizes: and.filter(a => a[0] !== 512).map(([n, r, label, px]) => n === 512 ? ({ px, r, label, k: px / 240, off: 0 }) : ({ px, r, label, k: px / 160, off: -40 })),
+      windAttr, protoWind: pw,
+      speedAttr: (this.props.speed ?? 'normale') === 'rapide' ? '1.25' : '1',
+      isHome: s.screen === 'home', isOver: s.screen === 'over', isShare: s.screen === 'share',
+      isRecord: s.isRecord, notRecord: !s.isRecord,
+      bestStr: fmt(s.best), lastStr: fmt(s.last), prevBestStr: fmt(s.prevBest),
+      gainStr: fmt(s.last - s.prevBest), gapStr: fmt(s.best - s.last),
+      barPct: Math.min(100, s.best ? s.last / s.best * 100 : 0).toFixed(1) + '%',
+      soundLabel: s.sound ? 'Son activé' : 'Son coupé',
+      wlBg: pw === 'left' ? on.bg : off.bg, wlFg: pw === 'left' ? on.fg : off.fg,
+      wrBg: pw === 'right' ? on.bg : off.bg, wrFg: pw === 'right' ? on.fg : off.fg,
+      hasToast: !!s.toast, toast: s.toast,
+      tapHint: React.createElement('div', { style: { fontFamily: "'Bowlby One'", fontSize: 30, color: '#fff', textShadow: '0 4px 0 #24401a', animation: 'wdPulse 1.1s ease-in-out infinite' } }, 'Tape pour jouer'),
+      start: () => { const r = this.road(); if (r) { r.setAttribute('hud', '1'); r.play(); } this.setState({ screen: 'play', toast: '' }); },
+      home: e => { stop(e); const r = this.road(); if (r) { r.setAttribute('hud', '0'); r.demo(); } this.setState({ screen: 'home' }); },
+      toggleSound: e => { stop(e); this.setState(p => ({ sound: !p.sound })); },
+      openBoard: e => { stop(e); this.flash('Classement : Game Center / Play Jeux'); },
+      windL: e => { stop(e); this.setState({ wind: 'left' }); },
+      windR: e => { stop(e); this.setState({ wind: 'right' }); },
+      share: e => { stop(e); this.setState({ screen: 'share' }); },
+      closeShare: () => this.setState({ screen: 'over' }),
+      sendShare: () => { this.setState({ screen: 'over' }); this.flash('Image prête à partager'); }
+    };
+  }
+}
+</script>
+</body>
+</html>
