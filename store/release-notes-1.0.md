@@ -1,6 +1,6 @@
 # Windy Drive 1.0 — release notes
 
-Version 1.0 · Android versionCode 2 · iOS build 1
+Version 1.0 · Android versionCode 3 · iOS build 2
 
 ## Google Play Console (What's new, 500 characters max per language)
 
@@ -12,6 +12,8 @@ First release of Windy Drive! Tap to steer against the wind and see how far you 
 Première version de Windy Drive ! Tape pour braquer contre le vent et vois jusqu'où tu peux aller. Route sans fin aléatoire, vent à gauche ou à droite avec un record pour chacun, mode nuit et partage facile de ton score. Disponible en français et en anglais.
 </fr-FR>
 ```
+
+> Play: the leaderboard is not mentioned because it stays hidden on Android until the Play Games IDs are configured (src/config/leaderboards.ts).
 
 ## App Store Connect (What's New in This Version)
 
