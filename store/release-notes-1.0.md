@@ -23,6 +23,7 @@ First release of Windy Drive!
 • An endless road, different every time
 • Wind from the left or from the right, with a separate record for each
 • Day and night modes
+• Game Center leaderboards, one per wind direction
 • Share your distance as a picture
 • Works offline
 • English and French
@@ -35,6 +36,7 @@ Première version de Windy Drive !
 • Une route sans fin, différente à chaque partie
 • Vent à gauche ou à droite, avec un record pour chaque sens
 • Modes jour et nuit
+• Classements Game Center, un par sens du vent
 • Partage ta distance sous forme d'image
 • Fonctionne hors ligne
 • Français et anglais
