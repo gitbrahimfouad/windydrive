@@ -1,6 +1,6 @@
 # Windy Drive 1.0 — release notes
 
-Version 1.0 · Android versionCode 4 · iOS build 2
+Version 1.0 · Android versionCode 5 · iOS build 3
 
 ## Google Play Console (What's new, 500 characters max per language)
 
