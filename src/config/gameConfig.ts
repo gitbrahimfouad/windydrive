@@ -49,6 +49,26 @@ export interface GameConfig {
     transitionMax: number; // units
     transitionFraction: number; // of segment length
   };
+  /**
+   * Progressive difficulty: parameters move from their base value (above) to `max` as the distance grows,
+   * from `rampStartMeters` over `rampLengthMeters`, then stay at `max`. Turn feasibility is preserved because
+   * Rmin is always computed from the speed the car will have on that segment.
+   */
+  difficulty: {
+    enabled: boolean;
+    rampStartMeters: number;
+    rampLengthMeters: number;
+    /** Dev only: force the level (0..1); null = follow the distance. */
+    forceLevel: number | null;
+    max: {
+      speed: number;
+      narrowingProbability: number;
+      narrowingWidthMin: number;
+      narrowingWidthMax: number;
+      turnRadiusMaxFactor: number;
+      straightMax: number;
+    };
+  };
   camera: {
     worldWidth: number; // visible width in world units
     maxCssWidth: number; // beyond this CSS width (tablets) the scale stops growing
@@ -102,6 +122,15 @@ export const defaultConfig: GameConfig = {
     widthMax: 0.75,
     transitionMax: 130,
     transitionFraction: 0.3,
+  },
+  // Measured with the test autopilot (0.25 s reactions): at max level the time spent < 12 u from the edge is ×5,
+  // survival over 40 s drops from 96 % to 83 %: harder but still passable.
+  difficulty: {
+    enabled: true,
+    rampStartMeters: 0,
+    rampLengthMeters: 2500,
+    forceLevel: null,
+    max: { speed: 300, narrowingProbability: 0.45, narrowingWidthMin: 0.55, narrowingWidthMax: 0.7, turnRadiusMaxFactor: 2.0, straightMax: 300 },
   },
   camera: { worldWidth: 360, maxCssWidth: 520, carScreenY: 0.68, followSmoothing: 3 },
   game: { crashDuration: 0.5, restartGuard: 0.35, metersPerUnit: 0.1, crashSlideDamping: 5, crashSpinFactor: 0.6, shakeAmplitude: 14 },

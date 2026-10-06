@@ -64,7 +64,7 @@ export class Effects {
     const speed = game.state === 'play' ? 1 : game.state === 'crash' ? 0.4 : 0.25;
     for (const s of this.streaks) {
       s.x += game.windDir * (120 + s.s * 150) * dt * speed;
-      s.y += game.cfg.car.speed * (0.85 + s.s * 0.25) * dt * speed * 0.6;
+      s.y += game.speed * (0.85 + s.s * 0.25) * dt * speed * 0.6;
       if (s.y > h + 20 || s.x < -30 || s.x > w + 30) {
         s.y = -10 - Math.random() * 80;
         s.x = Math.random() * w;
@@ -101,7 +101,7 @@ export class Effects {
     c.beginPath();
     for (const s of this.streaks) {
       const vx = game.windDir * (120 + s.s * 150);
-      const vy = game.cfg.car.speed * 0.6 * (0.85 + s.s * 0.25);
+      const vy = game.speed * 0.6 * (0.85 + s.s * 0.25);
       const m = Math.hypot(vx, vy);
       c.moveTo(s.x, s.y);
       c.lineTo(s.x - (vx / m) * s.len, s.y - (vy / m) * s.len);

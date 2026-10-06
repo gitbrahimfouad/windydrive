@@ -18,6 +18,8 @@ export function setupDevPanel(game: Game, onChange: () => void): void {
     ['tap (rad/s)', () => cfg.car.tap, (v) => (cfg.car.tap = v), 1, 4, 0.1],
     ['speed (u/s)', () => cfg.car.speed, (v) => (cfg.car.speed = v), 140, 420, 10],
     ['road width', () => cfg.road.width, (v) => (cfg.road.width = v), 60, 170, 2],
+    // -1 = follow the distance; 0..1 = force the difficulty level (test the hardest road immediately)
+    ['difficulty (-1 = auto)', () => cfg.difficulty.forceLevel ?? -1, (v) => (cfg.difficulty.forceLevel = v < 0 ? null : v), -1, 1, 0.25],
   ];
   for (const [label, get, set, min, max, step] of rows) {
     const row = document.createElement('label');

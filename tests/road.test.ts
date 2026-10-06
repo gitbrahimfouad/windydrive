@@ -59,16 +59,16 @@ describe('road generation', () => {
     for (const dir of [1, -1] as const) {
       for (const seed of SEEDS) {
         const { cfg, road } = build(seed, dir);
-        const rAgainst = cfg.car.speed / (cfg.road.againstWindFactor * cfg.car.tap);
         for (const s of road.segments) {
           if (s.kind === 'S') continue;
-          const floor = Math.max(s.against ? rAgainst : cfg.car.speed / cfg.road.withWindDivisor, cfg.road.width * cfg.road.minRadiusWidthFactor);
+          const rAgainst = s.speed / (cfg.road.againstWindFactor * cfg.car.tap);
+          const floor = Math.max(s.against ? rAgainst : s.speed / cfg.road.withWindDivisor, cfg.road.width * cfg.road.minRadiusWidthFactor);
           expect(s.radius).toBeGreaterThanOrEqual(floor - 1e-9);
           expect(s.radius).toBeLessThanOrEqual(floor * (s.intro ? cfg.road.warmup.radiusMax : cfg.road.turnRadiusMaxFactor) + 1e-9);
           expect(s.against).toBe(dir === 1 ? s.kind === 'L' : s.kind === 'R');
           // Required turn rate (speed / R) must be sustainable: tapping continuously gives
           // a turn rate of ~0.62·tap against the wind; the wind alone gives up to maxOmega with it.
-          const needed = cfg.car.speed / s.radius;
+          const needed = s.speed / s.radius; // speed the car has on this segment (rises with difficulty)
           expect(needed).toBeLessThanOrEqual(s.against ? cfg.road.againstWindFactor * cfg.car.tap + 1e-9 : cfg.car.maxOmega);
         }
       }
@@ -118,8 +118,8 @@ describe('road generation', () => {
             expect(s.length).toBeGreaterThanOrEqual(n.minSegmentLength);
             expect(s.gentle).toBe(true);
             if (s.kind !== 'S' && s.against) expect(s.radius).toBeGreaterThan(s.rmin * n.gentleRadiusFactor);
-            expect(s.narrow).toBeGreaterThanOrEqual(n.widthMin - 1e-9);
-            expect(s.narrow).toBeLessThanOrEqual(n.widthMax + 1e-9);
+            expect(s.narrow).toBeGreaterThanOrEqual(Math.min(n.widthMin, cfg.difficulty.max.narrowingWidthMin) - 1e-9);
+            expect(s.narrow).toBeLessThanOrEqual(Math.max(n.widthMax, cfg.difficulty.max.narrowingWidthMax) + 1e-9);
             expect(prevNarrow).toBe(false); // never two narrowed segments in a row
           }
           prevNarrow = isNarrow;
@@ -127,14 +127,14 @@ describe('road generation', () => {
         // width factor stays within bounds everywhere
         for (const p of road.pts) {
           expect(p.wf).toBeLessThanOrEqual(1);
-          expect(p.wf).toBeGreaterThanOrEqual(n.widthMin - 1e-9);
+          expect(p.wf).toBeGreaterThanOrEqual(Math.min(n.widthMin, cfg.difficulty.max.narrowingWidthMin) - 1e-9);
         }
       }
     }
     expect(narrowed).toBeGreaterThan(0);
-    // ~30 % of eligible segments, minus the "not twice in a row" rule
+    // 30 → 45 % of eligible segments (difficulty ramp), minus the "not twice in a row" rule
     expect(narrowed / eligible).toBeGreaterThan(0.15);
-    expect(narrowed / eligible).toBeLessThan(0.4);
+    expect(narrowed / eligible).toBeLessThan(0.5);
   });
 
   it('can disable narrowing from the config', () => {

@@ -14,6 +14,7 @@ function rollout(game: Game, period: number, since: number, horizon: number): nu
   const { cfg, road, windDir } = game;
   const h = cfg.physics.step;
   const c: CarState = { ...game.car };
+  const speed = game.speed;
   let minMargin = Infinity;
   let sinceTap = since;
   const n = Math.round(horizon / h);
@@ -23,7 +24,7 @@ function rollout(game: Game, period: number, since: number, horizon: number): nu
       sinceTap = 0;
     }
     sinceTap += h;
-    advance(c, stepCarPlay(c, h, windDir, cfg));
+    advance(c, stepCarPlay(c, h, windDir, cfg, speed));
     const near = road.nearest(c.x, c.y, c.idx);
     c.idx = near.idx;
     const margin = road.widthAt(c.idx) / 2 - near.dist;

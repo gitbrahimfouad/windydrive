@@ -43,6 +43,7 @@ Règles :
 - Segments : ligne droite 110–440 u (jamais deux de suite), virage rayon R ∈ [Rmin, 2,8·Rmin], angle 0,4–1,5 rad. Rmin contre le vent = vitesse/(0,62·tap) ; dans le vent = vitesse/1,8 ; toujours ≥ 0,9·largeur. Courbure lissée (0,12/échantillon). Pondération virages 1,7 / droite 1 ; jamais 3 segments identiques. Cap borné à ±1,25 rad (virages aggravants interdits au-delà de 0,75).
 - Début : droite ~420 u puis 5 segments d'échauffement doux, sans rétrécissement.
 - Rétrécissements : ~30 % des segments éligibles (≥260 u, droite ou virage doux), jamais deux de suite, largeur 62–75 %, transition smoothstep sur min(130, 30 % du segment).
+- **Difficulté progressive** (`config.difficulty`, `src/sim/difficulty.ts`) : de 0 à 2 500 m (smoothstep), vitesse 260→300, rétrécissements 30→45 % (largeur 62–75 % → 55–70 %), rayon max des virages 2,8→2,0×Rmin, lignes droites max 440→300 ; constante au-delà. Rmin est calculé avec la vitesse atteinte 100 m plus loin : les virages restent franchissables. Le vent (drift) ne change pas. Panneau DEV : `difficulty` force un niveau (−1 = auto).
 - Génération avec PRNG à graine (mulberry32) : même graine = même route.
 - Score = distance le long de la route, 10 u = 1 m. Crash : secousse 0,5 s, vibration, glissade, écran de fin. Restart par tap avec garde de 350 ms.
 - Deux sens de vent (défaut : vent vers la droite), un record par sens.

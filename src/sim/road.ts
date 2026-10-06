@@ -1,4 +1,5 @@
 import type { GameConfig, WindDir } from '../config/gameConfig';
+import { paramsAt } from './difficulty';
 import { createRng, type Rng } from './rng';
 
 export interface RoadPoint {
@@ -25,6 +26,8 @@ export interface SegmentInfo {
   narrow: number; // width factor reached (1 = no narrowing)
   gentle: boolean;
   intro: boolean; // warm-up segment
+  /** Car speed used to size the turn (speed at the end of the segment, the highest on it). */
+  speed: number;
 }
 
 interface GenState {
@@ -68,7 +71,7 @@ export class Road {
     const r = cfg.road;
     const first = r.initialStraight * (1 + (this.rng.next() * 2 - 1) * r.initialStraightJitter);
     const rem = first + r.startIndex * r.sampleStep;
-    const cur: SegmentInfo = { kind: 'S', startSample: 0, length: rem, radius: 0, rmin: 0, against: false, angle: 0, narrow: 1, gentle: true, intro: true };
+    const cur: SegmentInfo = { kind: 'S', startSample: 0, length: rem, radius: 0, rmin: 0, against: false, angle: 0, narrow: 1, gentle: true, intro: true, speed: cfg.car.speed };
     this.segments.push(cur);
     this.g = { x: 0, y: 0, a: 0, k: 0, kc: 0, rem, hist: ['S'], n: 0, nf: 1, L: 1, T: 1, lastNarrow: false, cur };
     this.extend(900);
@@ -83,10 +86,10 @@ export class Road {
     return this.cfg.road.width * this.pts[i].wf;
   }
 
-  /** Rmin for a turn, depending on whether it goes against the wind. */
-  minRadius(against: boolean): number {
+  /** Rmin for a turn taken at `speed`, depending on whether it goes against the wind. */
+  minRadius(against: boolean, speed: number = this.cfg.car.speed): number {
     const { car, road } = this.cfg;
-    const rmin = against ? car.speed / (road.againstWindFactor * car.tap) : car.speed / road.withWindDivisor;
+    const rmin = against ? speed / (road.againstWindFactor * car.tap) : speed / road.withWindDivisor;
     return Math.max(rmin, road.width * road.minRadiusWidthFactor);
   }
 
@@ -99,6 +102,11 @@ export class Road {
     g.n++;
     g.nf = 1;
     const intro = g.n <= road.warmupSegments;
+    // Difficulty at this point of the road. Turns are sized with the speed reached 100 m further
+    // (longer than any segment), so they stay passable even while the speed keeps increasing.
+    const startM = (this.length - road.startIndex) * road.sampleStep * this.cfg.game.metersPerUnit;
+    const diff = paramsAt(this.cfg, startM);
+    const speedForTurns = paramsAt(this.cfg, startM + 100).speed;
 
     // Allowed kinds. Heading guard: past the soft limit, forbid turns that increase |heading|.
     let opts: SegKind[] = ['L', 'R', 'S'];
@@ -129,16 +137,16 @@ export class Road {
     let angle = 0;
     if (kind === 'S') {
       g.k = 0;
-      g.rem = intro ? rng.range(road.warmup.straightMin, road.warmup.straightMax) : rng.range(road.straightMin, road.straightMax);
+      g.rem = intro ? rng.range(road.warmup.straightMin, road.warmup.straightMax) : rng.range(road.straightMin, Math.max(road.straightMin, diff.straightMax));
     } else {
       const sign = kind === 'R' ? 1 : -1;
       against = this.windDir === 1 ? kind === 'L' : kind === 'R';
-      rmin = this.minRadius(against);
+      rmin = this.minRadius(against, speedForTurns);
       if (intro) {
         radius = rng.range(rmin * road.warmup.radiusMin, rmin * road.warmup.radiusMax);
         angle = rng.range(road.warmup.angleMin, road.warmup.angleMax);
       } else {
-        radius = rng.range(rmin, rmin * road.turnRadiusMaxFactor);
+        radius = rng.range(rmin, rmin * diff.turnRadiusMaxFactor);
         angle = rng.range(road.turnAngleMin, road.turnAngleMax);
       }
       // Do not push the heading much beyond headingLimit.
@@ -150,15 +158,15 @@ export class Road {
     g.L = g.rem;
 
     // Narrowing: only after warm-up, on eligible segments, never twice in a row.
-    if (narrowing.enabled && !intro && gentle && g.L >= narrowing.minSegmentLength && !g.lastNarrow && rng.next() < narrowing.probability) {
-      g.nf = rng.range(narrowing.widthMin, narrowing.widthMax);
+    if (narrowing.enabled && !intro && gentle && g.L >= narrowing.minSegmentLength && !g.lastNarrow && rng.next() < diff.narrowingProbability) {
+      g.nf = rng.range(diff.narrowingWidthMin, diff.narrowingWidthMax);
       g.T = Math.min(narrowing.transitionMax, g.L * narrowing.transitionFraction);
     }
     g.lastNarrow = g.nf < 1;
     h.push(kind);
     if (h.length > 4) h.shift();
 
-    g.cur = { kind, startSample: this.length, length: g.L, radius, rmin, against, angle, narrow: g.nf, gentle, intro };
+    g.cur = { kind, startSample: this.length, length: g.L, radius, rmin, against, angle, narrow: g.nf, gentle, intro, speed: speedForTurns };
     this.segments.push(g.cur);
   }
 

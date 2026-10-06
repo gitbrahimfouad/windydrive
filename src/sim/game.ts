@@ -1,5 +1,6 @@
 import type { GameConfig, WindDir } from '../config/gameConfig';
 import { advance, applyTap, stepCarCrash, stepCarPlay, type CarState } from './car';
+import { paramsAt } from './difficulty';
 import { Road } from './road';
 import { randomSeed } from './rng';
 
@@ -58,6 +59,11 @@ export class Game {
   get score(): number {
     const samples = this.road.offset + this.car.idx - this.cfg.road.startIndex;
     return Math.max(0, Math.floor(samples * this.cfg.road.sampleStep * this.cfg.game.metersPerUnit));
+  }
+
+  /** Current car speed (rises with the distance, see config.difficulty). */
+  get speed(): number {
+    return paramsAt(this.cfg, this.score).speed;
   }
 
   /** Local half-width of the road under the car. */
@@ -119,13 +125,13 @@ export class Game {
   private step(h: number): void {
     if (this.state === 'play') {
       this.road.ensure(this.car.idx, this.cfg.road.lookaheadSamples);
-      const d = stepCarPlay(this.car, h, this.windDir, this.cfg);
+      const d = stepCarPlay(this.car, h, this.windDir, this.cfg, this.speed);
       const dist = this.move(d);
       // Lost when the car centre leaves the axis by more than half the local width.
       if (dist > this.halfWidth) {
         this.state = 'crash';
         this.crashTimeLeft = this.cfg.game.crashDuration;
-        this.car.v = this.cfg.car.speed;
+        this.car.v = this.speed;
         this.emit({ type: 'crash' });
       }
     } else if (this.state === 'crash') {

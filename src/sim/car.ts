@@ -20,11 +20,11 @@ export interface CarState {
  *  - heading integrates ω; position integrates heading at constant speed.
  * Called with the fixed step (1/120 s) so behaviour is identical on every device.
  */
-export function stepCarPlay(c: CarState, h: number, wind: WindDir, cfg: GameConfig): number {
+export function stepCarPlay(c: CarState, h: number, wind: WindDir, cfg: GameConfig, speed: number = cfg.car.speed): number {
   c.w += wind * cfg.car.drift * h;
   c.w = wind === 1 ? Math.min(c.w, cfg.car.maxOmega) : Math.max(c.w, -cfg.car.maxOmega);
   c.th += c.w * h;
-  return cfg.car.speed * h; // distance to advance
+  return speed * h; // distance to advance
 }
 
 export function applyTap(c: CarState, wind: WindDir, cfg: GameConfig): void {
