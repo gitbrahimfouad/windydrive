@@ -11,6 +11,7 @@ const LANGS = ['fr', 'en'];
 // dir, CSS width, CSS height, device pixel ratio, safe-area top, safe-area bottom  (pixels = css × dpr)
 const DEVICES = [
   ['ios/iphone-6.9in_1320x2868', 440, 956, 3, 62, 34],
+  ['ios/iphone-6.1in_1179x2556', 393, 852, 3, 59, 34], // iPhone 14 Pro → 17 Pro (Dynamic Island)
   ['ios/iphone-6.5in_1284x2778', 428, 926, 3, 47, 34],
   ['ios/ipad-13in_2064x2752', 1032, 1376, 2, 24, 20],
   ['android/phone_1080x1920', 360, 640, 3, 24, 0],
@@ -53,7 +54,9 @@ const send = (method, params = {}) =>
 await send('Page.enable');
 await send('Runtime.enable');
 
-for (const [dir, w, h, dpr, sat, sab] of DEVICES) {
+// DEVICE=<substring> limits the run to matching devices (e.g. DEVICE=6.1in)
+const ONLY = process.env.DEVICE;
+for (const [dir, w, h, dpr, sat, sab] of DEVICES.filter((d) => !ONLY || d[0].includes(ONLY))) {
   await send('Emulation.setDeviceMetricsOverride', { width: w, height: h, deviceScaleFactor: dpr, mobile: true });
   for (const lang of LANGS) {
     mkdirSync(`store/${dir}/${lang}`, { recursive: true });

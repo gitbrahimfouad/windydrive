@@ -7,7 +7,8 @@ cd "$(dirname "$0")/.."
 
 PORT=5199
 
-rm -rf store && mkdir -p store
+# Only the generated images are rebuilt: listing texts, release notes and README in store/ are kept.
+rm -rf store/ios/iphone-* store/ios/ipad-* store/android/phone_* && mkdir -p store/ios store/android
 
 npx vite --port $PORT --strictPort > /dev/null 2>&1 &
 SERVER=$!
