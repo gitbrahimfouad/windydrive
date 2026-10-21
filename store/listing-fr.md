@@ -9,8 +9,8 @@ Nombre de caractères comptés par rapport aux limites des stores.
 **Sous-titre** (19/30)
 Tape contre le vent
 
-**Texte promotionnel** (156/170)
-Le vent ne s'arrête jamais. Tape pour braquer contre lui, reste sur la route et vise un nouveau record de distance. Facile à prendre en main, dur à lâcher !
+**Texte promotionnel** (159/170)
+Tape pour braquer contre le vent et reste sur la route. Plus tu vas loin, plus ça se corse. Jusqu'où iras-tu ? Bats ton record et grimpe dans les classements !
 
 **Mots-clés** (96/100, séparés par des virgules, sans espace)
 arcade,un doigt,casual,conduite,réflexes,adresse,vent,route,hors ligne,voiture,addictif,sans fin

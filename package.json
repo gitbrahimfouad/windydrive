@@ -13,7 +13,8 @@
     "ios": "npm run cap:sync && cap open ios",
     "android": "npm run cap:sync && cap open android",
     "assets": "node scripts/make-assets.mjs && capacitor-assets generate --ios --android --iconBackgroundColor '#1d3a33' --splashBackgroundColor '#1d3a33'",
-    "store": "bash scripts/make-store-assets.sh"
+    "store": "bash scripts/make-store-assets.sh",
+    "store:header": "node scripts/make-store-header.mjs"
   },
   "devDependencies": {
     "@capacitor/android": "^8.5.2",

@@ -24,6 +24,8 @@ function roundRect(c: CanvasRenderingContext2D, x: number, y: number, w: number,
 export class Renderer {
   /** Canvas pixel-ratio cap: 2 saves fill-rate on phones; store screenshots raise it. */
   static maxDpr = 2;
+  /** World units → CSS px override (store artwork only, set by src/dev/shots.ts). */
+  static scaleOverride: number | null = null;
   private ctx: CanvasRenderingContext2D;
   private dpr = 1;
   /** CSS size of the canvas. */
@@ -45,7 +47,7 @@ export class Renderer {
     this.h = window.innerHeight;
     this.canvas.width = Math.round(this.w * this.dpr);
     this.canvas.height = Math.round(this.h * this.dpr);
-    this.scale = Math.min(this.w, maxCssWidth) / worldWidth;
+    this.scale = Renderer.scaleOverride ?? Math.min(this.w, maxCssWidth) / worldWidth;
   }
 
   /** Explicit size (used for off-screen share cards). */
@@ -85,8 +87,10 @@ export class Renderer {
     c.translate(-car.x, -car.y);
 
     // Visible window of samples (world units visible vertically ≈ h / scale; rotation adds margin).
-    const ahead = Math.ceil((this.h * 0.75) / this.scale / step + 65);
-    const behind = Math.ceil((this.h * 0.4) / this.scale / step + 50);
+    // In portrait (the game) the height terms always win, so this is unchanged; the width terms only
+    // matter for landscape store artwork, where the road runs across the screen.
+    const ahead = Math.ceil(Math.max(this.h * 0.75, this.w * 0.6) / this.scale / step + 65);
+    const behind = Math.ceil(Math.max(this.h * 0.4, this.w * 0.6) / this.scale / step + 50);
     const i0 = Math.max(0, car.idx - behind);
     const i1 = Math.min(pts.length - 1, car.idx + ahead);
 

@@ -77,6 +77,20 @@ export function applyShot(shot: string, ctx: ShotCtx): void {
   const narrowStart = narrow ? narrow.startSample - road.offset : 400;
 
   switch (shot) {
+    case 'header': {
+      // Landscape key art: the road runs left → right across the frame, no UI.
+      // ?viewh = world units visible vertically (zoom), ?cy = car height on screen (0..1).
+      const i = turnMid;
+      game.cfg.camera.carScreenY = Number(q.get('cy') ?? 0.66);
+      Renderer.scaleOverride = window.innerHeight / Number(q.get('viewh') ?? 520);
+      place(i, 0, 0);
+      fillTrail(i);
+      camera.angle = road.pts[i].a + Math.PI / 2;
+      game.state = 'play';
+      screens.hideAll();
+      screens.showScore(false);
+      break;
+    }
     case 'home':
       game.state = 'ready';
       ctx.showHome(2310);

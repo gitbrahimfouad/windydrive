@@ -9,8 +9,8 @@ Characters counted against the store limits.
 **Subtitle** (20/30)
 Tap against the wind
 
-**Promotional text** (138/170)
-The wind never stops pushing. Tap to steer against it, stay on the road and go for a new distance record. Easy to learn, hard to put down!
+**Promotional text** (160/170)
+Tap to steer against the wind and stay on the road. The farther you drive, the tougher it gets. How far can you go? Beat your record and climb the leaderboards!
 
 **Keywords** (99/100, comma-separated, no spaces)
 endless,arcade,one-tap,casual,driving,reflex,skill,wind,road,top-down,offline,car,addictive,highway
