@@ -1,6 +1,6 @@
 # Windy Drive 1.0 — release notes
 
-Version 1.0 · Android versionCode 5 · iOS build 3
+Version 1.0 · Android versionCode 6 · iOS build 4
 
 ## Google Play Console (What's new, 500 characters max per language)
 
@@ -42,3 +42,33 @@ Première version de Windy Drive !
 • Partage ta distance sous forme d'image
 • Fonctionne hors ligne
 • Français et anglais
+
+---
+
+## Correctif (Android versionCode 6 · iOS build 4)
+
+Si la 1.0 n'est **pas encore publiée**, garde les notes « First release » ci-dessus : le correctif fait partie de la première version.
+Si la 1.0 est **déjà en ligne**, utilise les notes ci-dessous (et passe la version en 1.0.1).
+
+### Google Play
+
+```
+<en-US>
+Bug fix: the distance shown on the results screen now always matches the one displayed when you leave the road.
+</en-US>
+<fr-FR>
+Correction : la distance affichée sur l'écran de fin correspond désormais toujours à celle affichée au moment de la sortie de route.
+</fr-FR>
+```
+
+### App Store Connect
+
+**English**
+
+Bug fix
+• The distance shown on the results screen now always matches the counter at the moment you leave the road. Your records and leaderboard scores use this same distance.
+
+**Français**
+
+Correction
+• La distance affichée sur l'écran de fin correspond désormais toujours au compteur au moment de la sortie de route. Tes records et tes scores dans les classements utilisent cette même distance.
