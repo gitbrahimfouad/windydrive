@@ -19,6 +19,8 @@ export class Game {
   /** Seconds since the game-over state began (restart guard). */
   overElapsed = 0;
   seed: number;
+  /** Score frozen when the car leaves the road: the crash slide must not change it. */
+  private crashScore: number | null = null;
   private acc = 0;
   private listeners: Array<(e: GameEvent) => void> = [];
 
@@ -47,6 +49,7 @@ export class Game {
     this.state = 'ready';
     this.crashTimeLeft = 0;
     this.overElapsed = 0;
+    this.crashScore = null;
     this.acc = 0;
   }
 
@@ -55,8 +58,9 @@ export class Game {
     this.reset();
   }
 
-  /** Distance along the road, in metres. */
+  /** Distance along the road, in metres (frozen at the moment of the crash). */
   get score(): number {
+    if (this.crashScore !== null) return this.crashScore;
     const samples = this.road.offset + this.car.idx - this.cfg.road.startIndex;
     return Math.max(0, Math.floor(samples * this.cfg.road.sampleStep * this.cfg.game.metersPerUnit));
   }
@@ -129,6 +133,7 @@ export class Game {
       const dist = this.move(d);
       // Lost when the car centre leaves the axis by more than half the local width.
       if (dist > this.halfWidth) {
+        this.crashScore = this.score; // before the state change: the slide below must not alter it
         this.state = 'crash';
         this.crashTimeLeft = this.cfg.game.crashDuration;
         this.car.v = this.speed;

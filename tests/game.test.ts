@@ -14,6 +14,27 @@ describe('game simulation', () => {
     expect(game.score).toBeGreaterThanOrEqual(0);
   });
 
+  it('shows the same score at the crash and on the end screen (the crash slide does not count)', () => {
+    for (let seed = 1; seed <= 30; seed++) {
+      const game = new Game(createConfig(), seed % 2 ? 1 : -1, seed);
+      let atCrash = -1;
+      let atOver = -2;
+      game.on((e) => {
+        if (e.type === 'crash') atCrash = game.score;
+        if (e.type === 'over') atOver = e.score;
+      });
+      game.tap();
+      for (let i = 0; game.state !== 'over'; i++) {
+        if (i % 25 === 0) game.tap(); // some steering so crashes happen in various places
+        game.update(1 / 60);
+      }
+      expect(atOver).toBe(atCrash);
+      expect(game.score).toBe(atCrash);
+      game.reset(); // a new game starts from 0 again
+      expect(game.score).toBe(0);
+    }
+  });
+
   it('ignores restart taps during the guard delay, then restarts', () => {
     const game = new Game(createConfig(), 1, 1);
     game.tap();

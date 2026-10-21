@@ -175,7 +175,8 @@ async function main(): Promise<void> {
       trail.update(game);
     }
     if (!frozen) effects.update(dt, game, renderer.w, renderer.h);
-    if (!frozen && game.state === 'play' && game.score !== lastScore) {
+    // 'crash' too: the last frame's distance (frozen at the crash) must reach the HUD
+    if (!frozen && (game.state === 'play' || game.state === 'crash') && game.score !== lastScore) {
       lastScore = game.score;
       screens.setScore(lastScore);
     }
