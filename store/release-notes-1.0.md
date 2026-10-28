@@ -1,15 +1,15 @@
 # Windy Drive 1.0 — release notes
 
-Version 1.0 · Android versionCode 6 · iOS build 4
+Version 1.0 · Android versionCode 7 · iOS build 5
 
 ## Google Play Console (What's new, 500 characters max per language)
 
 ```
 <en-US>
-First release of Windy Drive! Tap to steer against the wind and see how far you can drive. Endless random road that gets tougher the farther you go, left or right wind with separate records, night mode and easy score sharing. Global leaderboards, one per wind direction. Available in English and French.
+First release of Windy Drive! Tap to steer against the wind and see how far you can drive. Endless random road that gets tougher the farther you go, left or right wind with separate records, night mode and easy score sharing. Global leaderboards, one per wind direction, and a quick how-to-play guide. Available in English and French.
 </en-US>
 <fr-FR>
-Première version de Windy Drive ! Tape pour braquer contre le vent et vois jusqu'où tu peux aller. Route sans fin aléatoire qui se corse au fil des mètres, vent à gauche ou à droite avec un record pour chacun, mode nuit et partage facile de ton score. Classements mondiaux, un par sens du vent. Disponible en français et en anglais.
+Première version de Windy Drive ! Tape pour braquer contre le vent et vois jusqu'où tu peux aller. Route sans fin aléatoire qui se corse au fil des mètres, vent à gauche ou à droite avec un record pour chacun, mode nuit et partage facile de ton score. Classements mondiaux, un par sens du vent, et un petit guide « Comment jouer ». Disponible en français et en anglais.
 </fr-FR>
 ```
 
@@ -26,6 +26,7 @@ First release of Windy Drive!
 • Day and night modes
 • Game Center leaderboards, one per wind direction
 • Share your distance as a picture
+• A quick how-to-play guide, available anytime from the ? button
 • Works offline
 • English and French
 
@@ -40,35 +41,7 @@ Première version de Windy Drive !
 • Modes jour et nuit
 • Classements Game Center, un par sens du vent
 • Partage ta distance sous forme d'image
+• Un guide « Comment jouer », accessible à tout moment via le bouton ?
 • Fonctionne hors ligne
 • Français et anglais
 
----
-
-## Correctif (Android versionCode 6 · iOS build 4)
-
-Si la 1.0 n'est **pas encore publiée**, garde les notes « First release » ci-dessus : le correctif fait partie de la première version.
-Si la 1.0 est **déjà en ligne**, utilise les notes ci-dessous (et passe la version en 1.0.1).
-
-### Google Play
-
-```
-<en-US>
-Bug fix: the distance shown on the results screen now always matches the one displayed when you leave the road.
-</en-US>
-<fr-FR>
-Correction : la distance affichée sur l'écran de fin correspond désormais toujours à celle affichée au moment de la sortie de route.
-</fr-FR>
-```
-
-### App Store Connect
-
-**English**
-
-Bug fix
-• The distance shown on the results screen now always matches the counter at the moment you leave the road. Your records and leaderboard scores use this same distance.
-
-**Français**
-
-Correction
-• La distance affichée sur l'écran de fin correspond désormais toujours au compteur au moment de la sortie de route. Tes records et tes scores dans les classements utilisent cette même distance.
