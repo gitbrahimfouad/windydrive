@@ -18,7 +18,7 @@ export interface GameConfig {
   road: {
     width: number;
     sampleStep: number; // distance between axis samples
-    startIndex: number; // sample index where the car starts
+    startIndex: number; // sample index where the car starts (road drawn behind it: must cover tall screens)
     initialStraight: number; // nominal length of the first straight (before startIndex padding)
     initialStraightJitter: number; // ± fraction applied per road, so the start is not identical every game
     lookaheadSamples: number; // samples generated ahead of the car
@@ -92,7 +92,7 @@ export const defaultConfig: GameConfig = {
   road: {
     width: 110,
     sampleStep: 4,
-    startIndex: 40,
+    startIndex: 100, // 400 u of road behind the car at the start (40 left a gap at the bottom of tall phones)
     initialStraight: 420,
     initialStraightJitter: 0.2,
     lookaheadSamples: 450,

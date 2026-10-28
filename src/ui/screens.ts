@@ -232,7 +232,7 @@ export class Screens {
     } else {
       extra.style.cssText = 'margin-top:34px;width:100%;max-width:300px;display:flex;flex-direction:column;gap:10px;';
       const pct = d.best ? Math.min(100, (d.score / d.best) * 100) : 0;
-      extra.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:baseline;font-weight:700"><span style="font-size:19px;color:${th.uiYellow};white-space:nowrap">${t('almost', { n: formatMeters(d.best - d.score) })}</span><span style="font-size:14px;white-space:nowrap">${t('bestIs', { n: formatMeters(d.best) })}</span></div><div style="height:12px;border-radius:6px;background:rgba(255,255,255,.25);overflow:hidden"><div style="width:${pct.toFixed(1)}%;height:100%;background:${th.uiYellow};border-radius:6px"></div></div>`;
+      extra.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:baseline;font-weight:700"><span style="font-size:19px;color:${th.uiYellow};white-space:nowrap">${d.score >= d.best ? t('tie') : t('almost', { n: formatMeters(d.best - d.score) })}</span><span style="font-size:14px;white-space:nowrap">${t('bestIs', { n: formatMeters(d.best) })}</span></div><div style="height:12px;border-radius:6px;background:rgba(255,255,255,.25);overflow:hidden"><div style="width:${pct.toFixed(1)}%;height:100%;background:${th.uiYellow};border-radius:6px"></div></div>`;
     }
 
     const spacer = document.createElement('div');

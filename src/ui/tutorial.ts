@@ -90,7 +90,8 @@ export class Tutorial {
     this.ensureKeyframes();
     this.root.appendChild(overlay);
     this.el = overlay;
-    go.focus({ preventScroll: true });
+    // Keyboard users get the focus on the button; on touch screens it would only draw a focus ring.
+    if (window.matchMedia?.('(pointer: fine)').matches) go.focus({ preventScroll: true });
   }
 
   /** Closes the overlay; `notify` runs the onClose callback (marks the tutorial as seen). */
