@@ -14,6 +14,7 @@ import { Game } from './sim/game';
 import { bindInput } from './ui/input';
 import { DEFAULT_LANG, formatMeters, getLang, setLang, t, type Lang } from './ui/i18n';
 import { Screens } from './ui/screens';
+import { Tutorial } from './ui/tutorial';
 
 async function main(): Promise<void> {
   // Native plugins are only loaded inside the Capacitor shell.
@@ -53,8 +54,12 @@ async function main(): Promise<void> {
   const applyTheme = () => {
     renderer.theme = themes[themeName];
     screens.applyTheme(themes[themeName]);
+    tutorial.applyTheme(themes[themeName]);
     document.documentElement.style.background = themes[themeName].ground;
   };
+
+  const tutorial = new Tutorial(root, themes[themeName]);
+  const openTutorial = () => tutorial.open(game.windDir, () => void s.setSetting('tutorialSeen', true));
 
   const screens: Screens = new Screens(root, themes[themeName], {
     onWind: (dir) => {
@@ -83,6 +88,7 @@ async function main(): Promise<void> {
       void s.setSetting('lang', getLang());
       home();
     },
+    onHelp: openTutorial,
     onLeaderboard: () => {
       void platform.leaderboard.show().then((shown) => {
         if (!shown) screens.flash(t(Capacitor.getPlatform() === 'android' ? 'leaderboardSignInAndroid' : 'leaderboardSignIn'));
@@ -134,10 +140,14 @@ async function main(): Promise<void> {
     }
   });
 
-  bindInput(canvas, () => {
-    sound.unlock(); // WebAudio needs a user gesture
-    game.tap();
-  });
+  bindInput(
+    canvas,
+    () => {
+      sound.unlock(); // WebAudio needs a user gesture
+      game.tap();
+    },
+    () => tutorial.isOpen,
+  );
   applyTheme();
   home();
 
@@ -163,6 +173,9 @@ async function main(): Promise<void> {
       home();
     });
   }
+
+  // First launch: show how to play (not in store-screenshot mode).
+  if (!frozen && !(await s.getSetting<boolean>('tutorialSeen', false))) openTutorial();
 
   let last = performance.now();
   let lastScore = -1;

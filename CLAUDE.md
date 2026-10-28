@@ -58,6 +58,7 @@ Règles :
 ## Produit
 
 - Langues : FR et EN (i18n dès le départ). **Anglais par défaut** à la première ouverture, quelle que soit la langue de l'appareil ; le choix du joueur (bouton `Language · FR/EN`) est ensuite mémorisé.
+- Tutoriel « Comment jouer » (`src/ui/tutorial.ts`) : affiché automatiquement au premier lancement (réglage `tutorialSeen`), puis via le bouton « ? » de l'accueil. Illustrations SVG adaptées au sens du vent, textes i18n. Bloque les taps du jeu tant qu'il est ouvert.
 - Sons : synthétisés via WebAudio (tap, crash, nouveau record), sans fichiers audio. Interrupteur son sur l'accueil.
 - Identifiant d'app provisoire : `com.windydrive.app` (à confirmer avant publication).
 

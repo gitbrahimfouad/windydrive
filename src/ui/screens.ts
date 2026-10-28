@@ -8,6 +8,7 @@ export interface ScreenCallbacks {
   onToggleTheme(): void;
   onToggleLang(): void;
   onLeaderboard(): void;
+  onHelp(): void;
   onShare(): void;
   onMenu(): void;
   onReplay(): void;
@@ -137,7 +138,16 @@ export class Screens {
 
     const top = document.createElement('div');
     top.style.cssText = 'width:100%;display:flex;justify-content:space-between;gap:8px;';
-    top.append(this.pill(d.soundOn ? t('soundOn') : t('soundOff'), this.cb.onToggleSound));
+    const left = document.createElement('div');
+    left.style.cssText = 'display:flex;gap:8px;';
+    const help = this.pill('?', this.cb.onHelp);
+    help.setAttribute('aria-label', t('howToPlay'));
+    help.title = t('howToPlay');
+    help.style.width = '44px';
+    help.style.padding = '0';
+    help.style.fontSize = '18px';
+    left.append(this.pill(d.soundOn ? t('soundOn') : t('soundOff'), this.cb.onToggleSound), help);
+    top.append(left);
     if (d.leaderboard) top.append(this.pill(t('leaderboard'), this.cb.onLeaderboard));
 
     const rec = document.createElement('div');

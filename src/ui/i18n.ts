@@ -2,6 +2,15 @@ export type Lang = 'fr' | 'en';
 
 const dict = {
   fr: {
+    howToPlay: 'Comment jouer',
+    tutWindRight: 'Le vent pousse sans cesse ta voiture vers la droite.',
+    tutWindLeft: 'Le vent pousse sans cesse ta voiture vers la gauche.',
+    tutTapRight: "Tape n'importe où pour braquer à gauche, contre le vent. Tape régulièrement pour garder ta trajectoire.",
+    tutTapLeft: "Tape n'importe où pour braquer à droite, contre le vent. Tape régulièrement pour garder ta trajectoire.",
+    tutRoad: 'Reste sur la route ! Les panneaux jaunes annoncent un rétrécissement.',
+    tutScore: "Ton score, c'est la distance en mètres. Plus tu vas loin, plus ça va vite et plus c'est dur.",
+    tutWindTip: "Tu peux changer le sens du vent sur l'écran d'accueil.",
+    tutGo: "C'est parti !",
     tapToPlay: 'Tape pour jouer',
     hint: 'Chaque tap braque contre le vent',
     record: 'RECORD',
@@ -33,6 +42,15 @@ const dict = {
     shareError: "Partage impossible",
   },
   en: {
+    howToPlay: 'How to play',
+    tutWindRight: 'The wind constantly pushes your car to the right.',
+    tutWindLeft: 'The wind constantly pushes your car to the left.',
+    tutTapRight: 'Tap anywhere to steer left, against the wind. Keep tapping to hold your line.',
+    tutTapLeft: 'Tap anywhere to steer right, against the wind. Keep tapping to hold your line.',
+    tutRoad: 'Stay on the road! Yellow signs warn you that it gets narrower.',
+    tutScore: 'Your score is the distance in meters. The farther you go, the faster and tougher it gets.',
+    tutWindTip: 'You can switch the wind side on the home screen.',
+    tutGo: 'Got it!',
     tapToPlay: 'Tap to play',
     hint: 'Every tap steers against the wind',
     record: 'BEST',
